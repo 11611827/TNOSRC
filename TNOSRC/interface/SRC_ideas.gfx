@@ -1,0 +1,24 @@
+spriteTypes = {	
+
+	##CCP的内阁
+	spriteType = { 
+		name = "GFX_idea_CCP_minister_Dong_Biwu" # 图标的代码
+		texturefile = "gfx/interface/ideas/CCP/CCP_minister_Dong_Biwu.dds" #你准备的图片所在路径与图片的名字
+	}
+
+	spriteType = { 
+		name = "GFX_idea_CCP_minister_Chen_Yun" # 图标的代码
+		texturefile = "gfx/interface/ideas/CCP/CCP_minister_Chen_Yun.dds" #你准备的图片所在路径与图片的名字
+	}
+
+	spriteType = { 
+		name = "GFX_idea_CCP_minister_Zhou_Enlai" # 图标的代码
+		texturefile = "gfx/interface/ideas/CCP/CCP_minister_Zhou_Enlai.dds" #你准备的图片所在路径与图片的名字
+	}
+
+	spriteType = { 
+		name = "GFX_idea_CCP_minister_Li_Kenong" # 图标的代码
+		texturefile = "gfx/interface/ideas/CCP/CCP_minister_Li_Kenong.dds" #你准备的图片所在路径与图片的名字
+	}
+}
+	

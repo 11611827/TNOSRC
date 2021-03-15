@@ -1,0 +1,1 @@
+CCP = "countries/Chinese Communist Party.txt"

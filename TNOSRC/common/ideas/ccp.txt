@@ -1,0 +1,72 @@
+ideas = {
+	
+	head_of_government = {
+		CCP_Dong_Biwu = {   
+			on_add = {log = "[GetDateText]: [Root.GetName]: add idea CCP_minister_Dong_Biwu"}
+			picture = CCP_minister_Dong_Biwu
+			
+			allowed = {
+				original_tag = CCP
+			}
+			
+			traits = { head_of_government
+					socialist
+					popular_figurehead 
+			}
+		}
+	}
+
+	economy_minister = {
+		CCP_Chen_Yun = {   
+			on_add = {log = "[GetDateText]: [Root.GetName]: add idea CCP_minister_Chen_Yun"}
+			picture = CCP_minister_Chen_Yun
+			
+			allowed = {
+				original_tag = CCP
+			}
+			
+			traits = { 
+				economy_minister
+				socialist
+				financial_expert
+				economist
+				economic_organizer
+			}
+		}
+	}
+
+	foreign_minister  = {
+		CCP_Zhou_Enlai = {   
+			on_add = {log = "[GetDateText]: [Root.GetName]: add idea CCP_minister_Zhou_Enlai "}
+			picture = CCP_minister_Zhou_Enlai
+			
+			allowed = {
+				original_tag = CCP
+			}
+			
+			traits = { 
+				foreign_minister
+				socialist
+				ideological_crusader
+			}
+		}
+	}
+
+	security_minister = {
+		CCP_Li_Kenong= {   
+			on_add = {log = "[GetDateText]: [Root.GetName]: add idea  CCP_minister_Li_Kenong"}
+			picture = CCP_minister_Li_Kenong
+			
+			allowed = {
+				original_tag = CCP
+			}
+			
+			traits = { 
+				security_minister
+				socialist
+				backroom_backstabber
+				prince_of_terror
+			}
+		}
+	}
+｝
