@@ -1,4 +1,11 @@
 version="1.10.4"
+replace_path="common/countries"
+replace_path="common/country_tags"
+replace_path="common/ideas"
+replace_path="common/national_focus"
+replace_path="history/states"
+replace_path="history/units"
+replace_path="history/countries"
 tags={
 	"Alternative History"
 	"Balance"

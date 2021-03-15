@@ -3,7 +3,7 @@ ideas = {
 	head_of_government = {
 		CCP_Dong_Biwu = {   
 			on_add = {log = "[GetDateText]: [Root.GetName]: add idea CCP_minister_Dong_Biwu"}
-			picture = CCP_minister_Dong_Biwu
+			picture = "CCP_minister_Dong_Biwu"
 			
 			allowed = {
 				original_tag = CCP
@@ -19,7 +19,7 @@ ideas = {
 	economy_minister = {
 		CCP_Chen_Yun = {   
 			on_add = {log = "[GetDateText]: [Root.GetName]: add idea CCP_minister_Chen_Yun"}
-			picture = CCP_minister_Chen_Yun
+			picture = "CCP_minister_Chen_Yun"
 			
 			allowed = {
 				original_tag = CCP
@@ -38,7 +38,7 @@ ideas = {
 	foreign_minister  = {
 		CCP_Zhou_Enlai = {   
 			on_add = {log = "[GetDateText]: [Root.GetName]: add idea CCP_minister_Zhou_Enlai "}
-			picture = CCP_minister_Zhou_Enlai
+			picture = "CCP_minister_Zhou_Enlai"
 			
 			allowed = {
 				original_tag = CCP
@@ -55,7 +55,7 @@ ideas = {
 	security_minister = {
 		CCP_Li_Kenong= {   
 			on_add = {log = "[GetDateText]: [Root.GetName]: add idea  CCP_minister_Li_Kenong"}
-			picture = CCP_minister_Li_Kenong
+			picture = "CCP_minister_Li_Kenong"
 			
 			allowed = {
 				original_tag = CCP
