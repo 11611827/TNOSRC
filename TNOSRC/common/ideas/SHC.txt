@@ -1,0 +1,122 @@
+ideas = {
+	country = {
+	}
+
+	head_of_government = {
+		SHC_Jin_Zumin = {   
+			on_add = {log = "[GetDateText]: [Root.GetName]: add idea SHC_minister_Jin_Zumin"}
+			picture = SHC_minister_Jin_Zumin
+			
+			allowed = {
+				original_tag = SHC
+			}
+			
+			traits = { head_of_government
+			
+			}
+		}
+		SHC_Wang_Hongwen = {   
+			on_add = {log = "[GetDateText]: [Root.GetName]: add idea SHC_minister_Wang_Hongwen"}
+			picture = SHC_minister_
+			
+			allowed = {
+				original_tag = SHC
+			}
+			
+			traits = { head_of_government
+			
+			maoist	
+			}
+		}
+	}
+
+
+	economy_minister = {
+		SHC_Zhu_Lvweng = {   
+			on_add = {log = "[GetDateText]: [Root.GetName]: add idea SHC_minister_Zhu_Lvweng"}
+			picture = SHC_minister_Zhu_Lvweng
+			
+			allowed = {
+				original_tag = SHC
+			}
+			
+			traits = { 
+				economy_minister
+			   
+			}
+		}
+	
+	   SHC_Xu_Jingxian = {   
+			on_add = {log = "[GetDateText]: [Root.GetName]: add idea SHC_minister_Xu_Jingxian"}
+			picture = SHC_minister_
+			
+			allowed = {
+				original_tag = SHC
+			}
+			
+			traits = { 
+			    economy_minister
+				
+			}
+		}
+	}
+
+
+	foreign_minister  = {
+		SHC_Chu_minyi = {   
+			on_add = {log = "[GetDateText]: [Root.GetName]: add idea SHC_minister_Chu_minyi "}
+			picture = SHC_minister_Chu_minyi
+			
+			allowed = {
+				original_tag = SHC
+			}
+			
+			traits = { 
+				foreign_minister
+				
+			}
+		}
+		SHC_Wang_Shaoyong = {   
+			on_add = {log = "[GetDateText]: [Root.GetName]: add idea SHC_minister_Wang_Shaoyong "}
+			picture = SHC_minister_Wang_Shaoyong
+			
+			allowed = {
+				original_tag = SHC
+			}
+			
+			traits = { 
+				foreign_minister
+				
+			}
+		}
+	}
+
+
+	security_minister = {
+		SHC_Xia_Qifeng= {   
+			on_add = {log = "[GetDateText]: [Root.GetName]: add idea  SHC_minister_Xia_Qifeng"}
+			picture = SHC_minister_Xia_Qifeng
+			
+			allowed = {
+				original_tag = SHC
+			}
+			
+			traits = { 
+				security_minister
+			}
+		}
+		SHC_Wang_Weiguo= {   
+			on_add = {log = "[GetDateText]: [Root.GetName]: add idea  SHC_minister_Wang_Weiguo"}
+			picture = SHC_minister_Wang_Weiguo
+			
+			allowed = {
+				original_tag = SHC
+			}
+			
+			traits = { 
+				security_minister
+			}
+		}
+	}
+
+}

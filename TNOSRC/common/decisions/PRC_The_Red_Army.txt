@@ -1,0 +1,420 @@
+PRC_The_Red_Army = {
+		PRC_army_ship = {
+		cost = 50
+		days_remove = 35
+		days_re_enable = 45
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_army_ship"
+			hidden_effect = {
+				army_experience = -15
+			}
+		}
+		modifier = {
+			army_org_factor = 0.10
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove PRC_army_ship"
+			add_tech_bonus = {
+				bonus = 0.25
+				uses = 1
+				category = dd_tech
+			}
+				add_tech_bonus = {
+				bonus = 0.25
+				uses = 1
+				category = cl_tech
+			}
+				add_tech_bonus = {
+				bonus = 0.25
+				uses = 1
+				category = cv_tech
+			}
+				add_tech_bonus = {
+				bonus = 0.25
+				uses = 1
+				category = bb_tech
+			}
+				add_tech_bonus = {
+				bonus = 0.25
+				uses = 1
+				category =  ss_tech
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+			}
+		}
+	}
+	PRC_Better_Guns = {
+      
+	    cost = 50
+		days_remove = 35
+		days_re_enable = 45
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_Better_Guns"
+			hidden_effect = {
+			army_experience = -15
+			}
+		}
+		modifier = {
+			army_org_factor = 0.10
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove PRC_Better_Guns"
+			add_tech_bonus = {
+				bonus = 0.25
+				uses = 1
+				category = infantry_weapons
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+			}
+		}
+	}
+	PRC_army_air_equipment = {
+        allowed = { tag = PRC }
+		cost = 50
+		days_remove = 35
+		days_re_enable = 45
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_army_air_equipment"
+			hidden_effect = {
+				army_experience = -15
+			}
+		}
+		modifier = {
+			army_org_factor = 0.10
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove PRC_army_air_equipment"
+			add_tech_bonus = {
+				bonus = 0.25
+				uses = 1
+				category =  air_equipment
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+			}
+		}
+	}
+		PRC_army_MBT_equipment = {
+		cost = 50
+		days_remove = 35
+		days_re_enable = 45
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_army_MBT_equipment"
+			hidden_effect = {
+				army_experience = -15
+			}
+		}
+		modifier = {
+			army_org_factor = 0.10
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove PRC_army_MBT_equipment"
+			add_tech_bonus = {
+				bonus = 0.25
+				uses = 1
+				category = IFV
+			}
+			add_tech_bonus = {
+				bonus = 0.25
+				uses = 1
+				category = APC
+			}
+			add_tech_bonus = {
+				bonus = 0.25
+				uses = 1
+				category = MBT
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+			}
+		}
+	}
+	PRC_zhanzhengyanxi = {
+       	allowed = {
+			tag = PRC
+		}
+		modifier = {
+			stability_weekly = -0.002
+			war_support_weekly = 0.003
+			planning_speed = 0.1
+		}
+
+		ai_will_do = {
+			factor = 30
+
+			modifier = {
+				factor = 0
+				has_war_support > 0.9
+			}
+		}
+
+		days_remove = 30
+
+		days_re_enable = 75
+
+		cost = 25
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_zhanzhengyanxi"
+		}
+	}
+	PRC_army_train = {
+		cost = 50
+		days_remove = 30
+		days_re_enable = 30
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_army_train"
+			custom_effect_tooltip = PRC_army_train_tt
+			hidden_effect = {
+				army_experience = -15
+			}
+		}
+		modifier = {
+			army_org_factor = 0.10
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove PRC_army_train"
+			add_to_variable = {
+			var = PRC_army_yidong_zuzhi
+			value = 0.05
+		}
+		add_to_variable = {
+			var = PRC_army_lujun_sudu #移动中组织度损失
+			value = 0.05
+		}
+		add_to_variable = {
+			var = PRC_army_yidong_sudu #陆军组织度回复
+			value = 0.05
+		}
+		add_to_variable = {
+			var = PRC_army_zhencai #侦查
+			value = 0.05
+		}
+		add_to_variable = {
+			var = army_tracker
+			value = 1
+		}
+		add_to_variable = {
+			var = PRC_army_shibing_sunshi  #有经验的士兵的损失
+			value = 0.05
+		}
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+			}
+		}
+	}
+	PRC_army_advanced_thinking = {
+		visible = {
+              check_variable = {army_tracker < 50}
+          }
+		cost = 50
+		days_remove = 30
+		days_re_enable = 30
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_army_train"
+			custom_effect_tooltip = PRC_army_advanced_thinking_tt
+			hidden_effect = {
+				army_experience = -15
+			}
+		}
+		modifier = {
+			army_org_factor = 0.10
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove PRC_army_train"
+			add_to_variable = {
+			var = PRC_army_fangyu #防御
+			value = 0.05
+		}
+		add_to_variable = {
+			var = PRC_army_jingong #进攻
+			value = 0.05
+		}
+		add_to_variable = {
+			var = PRC_army_zhencha #包围惩罚
+			value = 0.05
+		}
+		add_to_variable = {
+			var = PRC_army_lujunsunhao #陆军损耗
+			value = 0.05
+		}
+		add_to_variable = {
+			var = army_tracker
+			value = 1
+		}
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+			}
+		}
+	}
+	PRC_army_rear_service = {
+		visible = {
+              check_variable = {army_tracker < 50}
+          }
+		cost = 50
+		days_remove = 30
+		days_re_enable = 30
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_army_train"
+			custom_effect_tooltip =PRC_army_rear_service_tt
+			hidden_effect = {
+				army_experience = -15
+			}
+		}
+		modifier = {
+			army_org_factor = 0.10
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove PRC_army_train"
+			add_to_variable = {
+			var = PRC_army_buji_zengjia
+			value = 0.05
+		}
+		add_to_variable = {
+			var = PRC_army_buji_haojin
+			value = 0.05
+		}
+		add_to_variable = {
+			var = PRC_army_zhencha
+			value = 0.05
+		}
+		add_to_variable = {
+			var = PRC_army_lujun_sudu
+			value = 0.05
+		}
+		add_to_variable = {
+			var = army_tracker
+			value = 1
+		}
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+			}
+		}
+	}
+	PRC_army_night_training = {
+		visible = {
+              check_variable = {army_tracker < 50}
+          }
+		cost = 50
+		days_remove = 30
+		days_re_enable = 30
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_army_train"
+			custom_effect_tooltip = PRC_army_night_training_tt
+			hidden_effect = {
+				army_experience = -15
+			}
+		}
+		modifier = {
+			army_org_factor = 0.10
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove PRC_army_train"
+			add_to_variable = {
+			var = PRC_army_yidong_zuzhi
+			value = 0.05
+		}
+		add_to_variable = {
+			var = PRC_army_jingong
+			value = 0.05
+		}
+		add_to_variable = {
+			var = PRC_army_zhencai
+			value = 0.05
+		}
+		add_to_variable = {
+			var = PRC_army_yejiangongji
+			value = 0.05
+		}
+		add_to_variable = {
+			var = army_tracker
+			value = 1
+		}
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+			}
+		}
+	}
+		PRC_army_first_aid_training = {
+		visible = {
+              check_variable = {army_tracker < 50}
+          }
+		cost = 50
+		days_remove = 30
+		days_re_enable = 30
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_army_train"
+			custom_effect_tooltip = PRC_army_first_aid_training_tt
+			hidden_effect = {
+				army_experience = -15
+			}
+		}
+		modifier = {
+			army_org_factor = 0.10
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove PRC_army_train"
+			add_to_variable = {
+			var = PRC_army_shibing_sunshi
+			value = 0.05
+		}
+		add_to_variable = {
+			var = PRC_army_yidong_zuzhi
+			value = 0.05
+		}
+		add_to_variable = {
+			var = PRC_army_yidong_sudu
+			value = 0.05
+		}
+		add_to_variable = {
+			var = PRC_army_dixingjiangdi
+			value = 0.05
+		}
+		add_to_variable = {
+			var = army_tracker
+			value = 1
+		}
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+			}
+		}
+	}
+}

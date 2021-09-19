@@ -1,0 +1,120 @@
+PRC_jingji = {
+    PRC_CIA_meijin = {
+		allowed = {
+			tag = PRC
+		}
+		days_remove = 0
+		
+		cost = 60
+		complete_effect = {
+		log = "[GetDateText]: [Root.GetName]: Decision PRC_CIA_meijin"
+		custom_effect_tooltip = PRC_CIA_meijin_tt
+			add_to_variable = { money_reserves = 9999 }
+	}
+
+		remove_effect = { 
+        add_to_variable = { money_reserves = 9999 }
+				add_popularity = {
+					ideology = social_liberal
+					popularity = 0.05
+				}
+					add_popularity = {
+					ideology = social_democrat
+					popularity = 0.05
+				}
+				add_popularity = {
+					ideology = market_liberal
+					popularity = 0.05
+				}
+				add_popularity = {
+					ideology = social_conservative
+					popularity = 0.05
+				}
+        }
+		ai_will_do = {
+			factor = 0
+		}	
+	}
+	
+	  PRC_CIA_qiangzhi = {
+		allowed = {
+			tag = PRC
+		}
+		days_remove = 0
+		
+		cost = 60
+		complete_effect = {
+		log = "[GetDateText]: [Root.GetName]: Decision PRC_CIA_qiangzhi"
+		custom_effect_tooltip = PRC_CIA_qiangzhi_tt
+			
+	}
+
+		remove_effect = { 
+			add_equipment_to_stockpile = {
+	type = infantry_equipment_2
+	amount = 4000
+}
+        add_popularity = {
+					ideology = social_liberal
+					popularity = 0.05
+				}
+					add_popularity = {
+					ideology = social_democrat
+					popularity = 0.05
+				}
+				add_popularity = {
+					ideology = market_liberal
+					popularity = 0.05
+				}
+				add_popularity = {
+					ideology = social_conservative
+					popularity = 0.05
+				}
+
+        }
+		ai_will_do = {
+			factor = 0
+		}	
+	}
+	
+		  PRC_CIA_gongchang = {
+		allowed = {
+			tag = PRC
+		}
+		days_remove = 0
+		
+		cost = 60
+		complete_effect = {
+		log = "[GetDateText]: [Root.GetName]: Decision PRC_CIA_gongchang"
+		custom_effect_tooltip = PRC_CIA_gongchang_tt
+			add_to_variable = { national_debt = 250 }
+	}
+
+		remove_effect = { 
+		add_offsite_building = { type = industrial_complex level = 10 }
+		add_offsite_building = { type = arms_factory level = 10 }
+		add_to_variable = { national_debt = 2500 }
+		add_to_variable = { interest_rates = 0.1 }
+        add_popularity = {
+					ideology = social_liberal
+					popularity = 0.05
+				}
+					add_popularity = {
+					ideology = social_democrat
+					popularity = 0.05
+				}
+				add_popularity = {
+					ideology = market_liberal
+					popularity = 0.05
+				}
+				add_popularity = {
+					ideology = social_conservative
+					popularity = 0.05
+				}
+
+        }
+		ai_will_do = {
+			factor = 0
+		}	
+	}
+}

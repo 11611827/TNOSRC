@@ -1,0 +1,24 @@
+China_East_Aisa_War= {
+	China_East_Aisa_War= {
+	icon = generic_ignite_civil_war
+	visible = {
+		has_war_with = JAP
+			has_full_control_of_state = 716
+			has_full_control_of_state = 328
+			has_full_control_of_state = 801
+			has_full_control_of_state = 717
+		}
+		
+		available = {
+			has_war_with = JAP
+		}
+		fire_only_once = yes
+		days_remove =0
+		cost = 25
+		complete_effect = {
+			hidden_effect = {
+				country_event = CEAW.1
+			}
+		}
+    }
+}

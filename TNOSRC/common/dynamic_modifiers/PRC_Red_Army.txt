@@ -1,0 +1,20 @@
+PRC_army_civilian_support = {
+	enable = { always = yes }
+	icon = "GFX_idea_URL_familial_connections"
+	
+
+org_loss_when_moving = PRC_army_yidong_zuzhi                             #移动中组织度损失
+army_org_regain =  PRC_army_yidong_sudu                              #陆军组织度回复
+army_speed_factor =  PRC_army_lujun_sudu                              #陆军师速度
+army_morale_factor =  PRC_army_lujun_zuzhi4                               #陆军组织度恢复
+defence =   PRC_army_fangyu                            #防御
+offence =  PRC_army_jingong                              #进攻
+terrain_penalty_reduction =   PRC_army_dixingjiangdi                             #地形惩罚降低
+land_night_attack =   PRC_army_yejiangongji                              #陆战夜战攻击
+pocket_penalty =    PRC_army_zhencha                             #包围惩罚
+recon_factor =   PRC_army_zhencai                              #侦查
+attrition =    PRC_army_lujunsunhao                             #陆军损耗
+no_supply_grace =    PRC_army_buji_zengjia                            #携行补给
+out_of_supply_factor =  PRC_army_buji_haojin                              #补给耗尽
+experience_loss_factor =   PRC_army_shibing_sunshi                              #有经验的士兵的损失
+}

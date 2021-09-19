@@ -1,0 +1,438 @@
+PRC_agriculture = {
+PRC_build_rural_chemical_fertilizer_plant = {
+	icon = generic_form_nation
+		available = {
+		   check_variable = { PRC_budget > 0 }
+		}
+		visible =  {
+	        tag = PRC
+		}
+		
+		ai_will_do = {
+			factor = 200
+		}
+		cost = 15
+		days_remove = 60 
+		days_re_enable = 30 
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_build_rural_chemical_fertilizer_plant"
+			add_to_variable= { PRC_budget = -3 }
+			custom_effect_tooltip = PRC_build_rural_chemical_fertilizer_plant_tt
+			}
+		remove_effect = {
+		log = "[GetDateText]: [Root.GetName]: Decision remove PRC_build_rural_chemical_fertilizer_plant"
+         add_to_variable = {
+             var = agriculture_situation   
+             value = 10 
+			 }
+		custom_effect_tooltip = PRC_promote_advanced_farming_methods_tt 
+		 TNO_improve_agriculture_med = yes
+        }
+	}
+	PRC_promote_advanced_farming_methods = {
+	icon = generic_form_nation
+		available = {
+		   check_variable = { PRC_budget > 0 }
+		}
+		visible =  {
+	        tag = PRC
+		}
+		
+		ai_will_do = {
+			factor = 200
+		}
+		cost = 15
+		days_remove = 30 
+		days_re_enable = 30 
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_promote_advanced_farming_methods"
+			add_to_variable= { PRC_budget = -1 }
+		}
+		remove_effect = {
+		log = "[GetDateText]: [Root.GetName]: Decision remove PRC_promote_advanced_farming_methods"
+         add_to_variable = {
+             var = agriculture_situation   
+             value = 5 
+			 }
+		 custom_effect_tooltip = touzijianshe_tt
+		 TNO_improve_agriculture_med = yes
+        }
+	}
+	PRC_breeding_of_excellent_varieties = {
+	icon = generic_form_nation
+		available = {
+		   check_variable = { PRC_budget > 0 }
+		}
+		visible =  {
+	        tag = PRC
+		}
+		
+		ai_will_do = {
+			factor = 200
+		}
+		cost = 15
+		days_remove = 120
+		days_re_enable = 60 
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_breeding_of_excellent_varieties"
+			add_to_variable= { PRC_budget = -2 }
+		}
+		remove_effect = {
+		log = "[GetDateText]: [Root.GetName]: Decision remove PRC_breeding_of_excellent_varieties"
+         add_to_variable = {
+             var = agriculture_situation   
+             value = 15 
+			 }
+		 custom_effect_tooltip = PRC_breeding_of_excellent_varieties_tt
+		 TNO_improve_agriculture_med = yes
+        }
+	}
+	PRC_construction_of_local_agricultural_machinery_repair_and_manufacturing_plants = {
+	icon = generic_form_nation
+		available = {
+		   check_variable = { PRC_budget > 0 }
+		}
+		visible =  {
+	        tag = PRC
+		}
+		
+		ai_will_do = {
+			factor = 200
+		}
+		cost = 10
+		days_remove = 30 
+		days_re_enable = 30 
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_construction_of_local_agricultural_machinery_repair_and_manufacturing_plants"
+			add_to_variable= { PRC_budget = -2 }
+		}
+		remove_effect = {
+		log = "[GetDateText]: [Root.GetName]: Decision remove PRC_construction_of_local_agricultural_machinery_repair_and_manufacturing_plants"
+         add_to_variable = {
+             var = agriculture_situation   
+             value = 5 
+			 }
+		 custom_effect_tooltip = PRC_construction_of_local_agricultural_machinery_repair_and_manufacturing_plants_tt
+		 TNO_improve_agriculture_med = yes
+        }
+	}
+	PRC_rural_water_conservancy_construction = {
+	icon = generic_form_nation
+		available = {
+		   check_variable = { PRC_budget > 0 }
+		}
+		visible =  {
+	        tag = PRC
+		}
+		
+		ai_will_do = {
+			factor = 200
+		}
+		cost = 15
+		days_remove = 120 
+		days_re_enable = 120 
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_rural_water_conservancy_construction"
+			add_to_variable= { PRC_budget = -5 }
+		}
+		remove_effect = {
+		log = "[GetDateText]: [Root.GetName]: Decision remove PRC_rural_water_conservancy_construction"
+         add_to_variable = {
+             var = agriculture_situation   
+             value = 15 }
+		 custom_effect_tooltip = PRC_rural_water_conservancy_construction_tt
+		 TNO_improve_agriculture_med = yes
+        }
+		}
+	PRC_cultivated_land_improvement = {
+	icon = generic_form_nation
+		available = {
+		   check_variable = { PRC_budget > 0 }
+		}
+		visible =  {
+	        tag = PRC
+		}
+		
+		ai_will_do = {
+			factor = 200
+		}
+		cost = 25
+		days_remove = 120 
+		days_re_enable = 120 
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_cultivated_land_improvement"
+			add_to_variable= { PRC_budget = -5 }
+		}
+		remove_effect = {
+		log = "[GetDateText]: [Root.GetName]: Decision remove PRC_cultivated_land_improvement"
+         add_to_variable = {
+             var = agriculture_situation   
+             value = 10 }
+		 custom_effect_tooltip = PRC_cultivated_land_improvement_tt
+		 TNO_improve_agriculture_med = yes
+        }
+		}
+	PRC_increase_the_purchase_of_agricultural_products = {
+	icon = generic_form_nation
+		available = {
+		   check_variable = { PRC_budget > 0 }
+		}
+		visible =  {
+	        tag = PRC
+		}
+		
+		ai_will_do = {
+			factor = 200
+		}
+		cost = 5
+		days_remove = 5 
+		days_re_enable = 5 
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_increase_the_purchase_of_agricultural_products"
+			add_to_variable= { PRC_budget = 2 }
+		}
+		remove_effect = {
+		log = "[GetDateText]: [Root.GetName]: Decision remove PRC_increase_the_purchase_of_agricultural_products"
+         add_to_variable = {
+             var = agriculture_situation   
+             value = -5 
+			 }
+        }
+	}
+	PRC_tranfer_local_food = {
+	icon = generic_form_nation
+		available = {
+		   check_variable = { PRC_budget > 0 }
+		}
+		visible =  {
+	        tag = PRC
+		}
+		
+		ai_will_do = {
+			factor = 200
+		}
+		cost = 15
+		days_remove = 15 
+		days_re_enable = 5 
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_tranfer_local_food"
+			add_to_variable= { PRC_budget = 3 }
+		}
+		remove_effect = {
+		log = "[GetDateText]: [Root.GetName]: Decision remove PRC_tranfer_local_food"
+         add_to_variable = {
+             var = agriculture_situation   
+             value = -7 }
+		 
+        }
+    }		
+PRC_Officers_and_soldiers_go_to_the_countryside = {
+	icon = generic_form_nation
+		available = {
+		        or= {
+                 has_idea = PRC_agriculture_situation_1
+                 has_idea = PRC_agriculture_situation_2
+                }
+		}
+		visible =  {
+	        or = {
+			  has_idea = PRC_agriculture_situation_1
+			  has_idea = PRC_agriculture_situation_2
+		    }
+		}
+		
+		ai_will_do = {
+			factor = 200
+		}
+		cost = 35#决议花多少pp
+		days_remove = 5 # 完成后维持5天再移除
+		days_re_enable = 5 # 将在5天后显示于界面中，可以再次选择
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_Officers_and_soldiers_go_to_the_countryside"
+		}
+		remove_effect = {
+		log = "[GetDateText]: [Root.GetName]: Decision remove PRC_Officers_and_soldiers_go_to_the_countryside"
+         add_to_variable = {
+             var = agriculture_situation   
+             value = 5 }
+		 stability_factor = 0.1
+          }
+	}
+PRC_agricultural_emergency_appropriation = {
+    icon = generic_form_nation
+	    available = {
+		    or = {
+			   has_idea = PRC_agriculture_situation_1
+			   has_idea = PRC_agriculture_situation_2
+			   
+	        }
+		}
+		visible = {
+		    or = {
+			  has_idea = PRC_agriculture_situation_1
+			  has_idea = PRC_agriculture_situation_2
+		    }
+		}
+		
+		ai_will_do = {
+		     factor = 200
+		}
+		cost = 30
+		days_remove = 0
+		days_re_enable = 0
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_agricultural_emergency_appropriation"
+			custom_effect_tooltip = PRC_agricultural_emergency_appropriation_tt
+			add_to_variable = { PRC_budget = -2 }
+		}
+		remove_effect = {
+		log = "[GetDateText]: [Root.GetName]: Decision remove PRC_agricultural_emergency_appropriation"
+		 add_to_variable = { agriculture_situation = 5 }
+		 stability_factor = 0.05
+		 }
+	}
+PRC_emergency_grain_import = {
+     icon = generic_form_nation
+	     available = {
+		        or = {
+				 has_idea = PRC_agriculture_situation_1
+				 has_idea = PRC_agriculture_situation_2
+				}
+		 }
+		 visible = {
+		       or = {
+			    has_idea = PRC_agriculture_situation_1
+				has_idea = PRC_agriculture_situation_2
+			   }
+		 }
+		 
+		 ai_will_do = {
+		       factor = 200
+	     }
+		 cost = 50
+		 days_remove = 0
+		 days_re_enable = 10
+		 complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_emergency_grain_import"
+			custom_effect_tooltip = PRC_emergency_grain_import_tt
+			add_to_variable = { PRC_budget = -3 }
+		}
+		 remove_effect = {
+		 log = "[GetDateText]: [Root.GetName]: Decision remove PRC_emergency_grain_import"
+		 add_to_variable = { agriculture_situation = 15 }
+		 stability_factor = 0.15
+		 communism_drift = -0.2
+		 }
+	}
+kuodatudigaige = {
+		visible = {
+			OR = {
+				has_government = communist
+				has_government = socialist
+			}
+		}
+		modifier = {
+			MONTHLY_POPULATION = 0.15
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		days_remove = 45
+		days_re_enable = 30
+		cost = 15
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision kuodatudigaige"
+			custom_effect_tooltip = kuodatudigaige
+			add_to_variable = { national_debt = 150 }
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove kuodatudigaige"
+			TNO_improve_agriculture_med = yes
+			RUS_integration_cost_days_decrease = yes
+			add_to_variable = { GDP = 75 }
+			add_to_variable = { misc_income = 999 }
+			
+			custom_effect_tooltip = kuodatudigaige
+
+		}
+	}	
+	PRC_nongyejixiehuha = {
+		allowed = {
+			tag = PRC
+		}
+		days_remove = 30
+		cost = 15
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_nongyejixiehuha"
+			custom_effect_tooltip = PRC_nongyejixiehuha
+			
+		}
+		remove_effect = {
+			TNO_improve_agriculture_med= yes
+			
+		}
+		modifier = {
+			consumer_goods_factor = 0.1
+			add_to_variable = { PRC_budget = -1 } 
+			add_to_variable = { agriculture_situation = 3 } 
+		}
+		ai_will_do = {
+			factor = 30
+		}
+	}
+Monthly_agricultura_survey = {                           
+         allowed = { 
+		   original_tag = PRC  
+		 }                
+          available = { 
+			hidden_trigger = {
+			NOT = {
+				has_country_flag =PRC_Monthly_agricultura_survey	
+				}
+			}
+		  }
+          activation = {                         
+            tag = PRC             
+          }
+          is_good = yes                      
+                      
+          days_mission_timeout = 30          
+          timeout_effect = {  
+                log = "[GetDateText]: [Root.GetName]: Monthly_agricultura_survey mission timer elapsed"		  
+                hidden_effect = {
+				if = {
+				 limit = {
+					NOT = {has_country_flag = PRC_Monthly_agricultura_survey}
+					}
+				 clamp_variable = {
+					var = agriculture_situation
+					min = 5
+					max = 100
+					}
+				
+				}
+				if = {
+				   limit = { has_country_flag = KRA }
+				   add_to_variable = { agriculture_situation = -3 }
+				   }
+				if = {
+				   limit = { has_country_flag = KRB }
+				   add_to_variable = { agriculture_situation = -5 }
+				   }
+				if = {
+				   limit = { has_country_flag = KRC }
+				   add_to_variable = { agriculture_situation = -3 }
+				   }
+				update_monthly_agricultural_survey = yes
+				activate_mission = Monthly_agricultura_survey
+				country_event = { id = agriculture.1 days = 0 }
+				}
+			
+			custom_effect_tooltip = PRC_Monthly_agricultural_survey	
+			}	
+			
+          complete_effect = {                    
+             log = "[GetDateText]: [Root.GetName]: Decision Monthly_agricultura_survey"             
+          }
+    }
+}

@@ -1,0 +1,51 @@
+PRC_integrate_china_category = {
+	icon = decision_category_generic_political_actions
+	
+	picture = GFX_chinamap
+
+	allowed = {
+		or = {
+		original_tag = SHC
+		original_tag = CSR
+		original_tag = PRC
+		original_tag = YUN
+		original_tag = GNG
+	    original_tag = YAA
+	  }
+	}
+	visible = {
+	
+	}
+	visible_when_empty = no
+
+	priority = {
+		base = 15
+	}
+}
+PRC_qiandu = {
+	icon = decision_category_generic_political_actions
+	
+	picture =GFX_chinamap
+
+
+	visible = {
+	
+	}
+	visible_when_empty = no
+
+	priority = {
+		base = 15
+	}
+}
+SRC_ziye= {
+	icon = decision_generic_decision
+	picture = GFX_CN_ziye_china
+	visible = {
+		is_debug = yes
+		is_ai = no
+	}
+	visible_when_empty = yes
+	priority = {
+		base = 300
+	}
+}

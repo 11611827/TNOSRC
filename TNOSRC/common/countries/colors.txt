@@ -1,7 +1,19 @@
 #reload countrycolors
-CCP = {
+PRC= {
     color = rgb { 220 46 76 }
 	color_ui = rgb { 220 46 76 }
+}
+SHC= {
+    color = rgb { 255 48 48 }
+	color_ui = rgb { 255 48 48 }
+}
+CSR= {
+    color = rgb { 255 48 48 }
+	color_ui = rgb { 255 48 48 }
+}
+ETR = {
+	color = rgb { 85 158 226 } 
+	color_ui = rgb { 85 158 226 }
 }
 IRI = {
     color = rgb { 0 74 0 }

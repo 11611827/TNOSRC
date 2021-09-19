@@ -1,0 +1,23 @@
+PRC_wunianjihua = {
+	icon = GFX_decision_category_power_struggle
+	picture = chinawunianjihua
+
+	allowed = {
+			original_tag = PRC
+
+	}
+}
+PRC_The_Red_Army = {
+	icon = decision_category_military_operation
+	picture = GFX_PRC_The_Red_Army
+	allowed = {
+		or = {
+			original_tag = CSR
+			original_tag = PRC
+		  }
+	}
+	visible_when_empty = yes
+	priority = {
+		base = 300
+	}
+}

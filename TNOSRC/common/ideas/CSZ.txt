@@ -1,0 +1,74 @@
+ideas = {
+	country = {
+	}
+
+	head_of_government = {
+
+		CSZ_Zeng_jingbing = {   
+			on_add = {log = "[GetDateText]: [Root.GetName]: add idea CSZ_Zeng_jingbing "}
+			picture = CSZ_minister_Zeng_jingbing
+			
+			allowed = {
+				original_tag = CSZ
+			}
+			
+			traits = { head_of_government
+			hog_silent_workhorse
+			}
+		}
+	}
+
+
+	economy_minister = {
+	
+	   CSZ_Zhu_nong = {   
+			on_add = {log = "[GetDateText]: [Root.GetName]: add idea CSZ_Zhu_nong"}
+			picture = CSZ_minister_Zhu_nong
+			
+			allowed = {
+				original_tag = CSZ
+			}
+			
+			traits = { 
+			    economy_minister
+				eco_military_entrepreneur
+			}
+		}
+	}
+
+
+	foreign_minister  = {
+		CSZ_Fei_yueshan = {   
+			on_add = {log = "[GetDateText]: [Root.GetName]: add idea CSZ_Fei_yueshan "}
+			picture = CSZ_minister_Fei_yueshan
+			
+			allowed = {
+				original_tag = CSZ
+			}
+			
+			traits = { 
+				foreign_minister
+				for_general_staffer
+				
+			}
+		}
+	}
+
+
+	security_minister = {
+		CSZ_Ni_nanshan= {   
+			on_add = {log = "[GetDateText]: [Root.GetName]: add idea CSZ_Ni_nanshan "}
+			picture = CSZ_minister_Ni_nanshan
+			
+			allowed = {
+				original_tag = CSZ
+			}
+			
+			traits = { 
+				security_minister
+				sec_resistance_hero
+			}
+		}
+	}
+
+}

@@ -1,0 +1,1691 @@
+###############################
+# Integrate PRCna Decisions
+###############################
+# By Spiderfist Island (KR CONTRIBUTOR AND KMT REWORK AUTHOR)
+###############################
+
+#########################################################
+##### KR PRCNA STATE INTEGRATION MECHANICS OVERVIEW #####
+#########################################################
+
+##### OVERVIEW
+
+# This is a general overview of how the mechanics for the state integration decisions work.
+# Essentially, the decisions are static in terms of the decision ID and the states they integrate. (Not spawned from target triggers like other big decision lists)
+# That means there's a lot of them. Sorry! Otherwise this coring needs to be done by events, and this actually turns it into a game mechanic rather than a DH-style RNG fest.
+# To gain access to the set of decisions, a given tag has to fulfill the criteria in the "allowed" condition for the decision category.
+# This decision category is "SRC_PRC_province_integration_category," located in common\decisions\categories.
+# This unlocks the entire group of decisions to integrate provinces and foreign concessions as core states for that tag.
+# These decisions are meant for tags that have aspirations to become the sole government of PRCna, which includes the Qing/North Zhili, the Fengtian Government, and the KMT by default.
+# Other tags could also be added too! You can make additional tags require specific focuses, ideas, governments, or country flags to be included on the whitelist. Shandong/Shangqing Tianguo is one notable example.
+# The groupings of states are based on the rough borders of the historical provinces of PRCna (under the late Qing and the Nationalists partially)
+# While the conditions, effects and visibility triggers are all constant, the PP cost and the time taken to "integrate" the province varies based on 1) tag and 2) previous effects caused by events, decisions, or national focuses
+# How is this done? VARIABLES
+
+##### HOW THE STATE INTEGRATION VARIABLES WORK
+
+# Default variables for all integration costs and durations is included in each decision
+# This is given in case a tag doesn't define it
+# I grouped them into three PP cost "tiers" roughly dependent on size, with a special discounted set for the concessions.
+# If you're going to have mechanics in the forms of events or  that fiddle around with integration costs and times for a given tag (like, say, my work for PRC), then they should have a defined set of variables in their history file (see PRC - PRCna.txt in history/countries for reference)
+
+##### EXAMPLE LIST OF VARIABLE COSTS FOR TIER
+
+# Set for normal provinces
+#cost = SRC_PRC_provinceintegration_cost_small?50
+#cost = SRC_PRC_provinceintegration_cost_medium?75
+#cost = SRC_PRC_provinceintegration_cost_large?100
+#drop/bonus	-10 PP/tier via effects
+#duration		cost = SRC_PRC_provinceintegration_speed?90
+#drop/bonus	-20 days/tier via effects
+
+# Set for concession states
+#cost			cost = SRC_PRC_concessionintegration_cost?15
+#drop/bonus			-5 PP/tier via effects
+#duration		cost = SRC_PRC_concessionintegration_speed?60
+#drop/bonus			-15 days/tier via effects
+
+##### LIST OF STATES IN EACH PRCNA PROPER PROVINCE (EXCEPTING CONCESSIONS)
+
+### Guangdong
+# 326 
+# 591 
+# 592 
+# 593 
+# 729 
+# 1017 
+
+### Guangxi
+# 594 Nanning
+# 599 Guilin
+
+### Guizhou
+# 603 Guizhou
+
+### Zhili/Hebei
+# 608 Jingzhao
+# 609 Chahar
+# 614 Tangshan
+# 1023 Shijiazhuang
+
+### Henan
+# 607 Henan
+# 1014 Kaifeng
+
+### Hubei
+# 620 Hubei
+# 1015 Nanyang
+# 1016 Wuhan
+
+### Hunan
+# 602 Hunan
+# 961 Changde
+
+### Jiangsu
+# 598 Huaiyang
+# 613 Jinling
+
+### Jiangxi
+# 600 Gannan
+# 1019 Yuzhang
+
+### Shaanxi
+# 622 Yulin
+# 956 Guanzhong
+
+### Shanxi
+# 615 Shanxi
+
+### Shandong
+# 597 Ji'nan
+# 811 Ji'nan
+# 812 Ji'nan
+# 1021 Linyi
+# 1020 Linyi
+# 1022 Jiaodong
+
+### Anhui
+# 606 Anqing
+# 959 Wuhu
+
+### Zhejiang
+# 596 Qiantang
+
+### Fujian
+# 595 Jian'an
+
+### Sichuan
+# 605 Chengdu
+# 905 Chongqing
+
+### Yunnan
+# 325 Kunming
+# 960 Dali
+
+### Qinghai
+# 601 Xining
+# 604 Yushu
+# 906 Yushu
+
+### GanNing
+# 283 Lanzhou
+# 616 Hexi Corridor
+# 764 Lanzhou
+# 1302 Lanzhou
+
+### Inner Mongolia
+# 610 Xilingol
+# 612 Xilingol
+# 621 Ulanqab
+# 715 Xilingol
+# 955 Ulanqab
+
+### Outer Mongolia
+# 330 Xilingol
+# 814 Xilingol
+# 815 Ulanqab
+# 329 Xilingol
+
+### Dongbei
+# 328 Liaobei
+# 714 Liaobei
+# 716 Liaoning
+# 717 Liaobei
+# 801 Liaobei
+# 810 Jehol
+
+### Outer Dongbei
+# 408 Haishenwan
+# 409 Boli
+# 657 Biluobizhan
+# 1364 Jieya
+# 537 Sakhalin
+
+### Taiwan
+# 524 Taiwan
+# 526 Okinawa
+
+### Xinjiang
+# 617 Xinjiang
+# 618 Dzungaria
+# 619 Yarkand
+# 957 Dabangcheng
+# 958 Kunlunshan
+
+### Tibet
+# 322 Tibet
+# 765 Lhasa
+# 964 Chambo
+
+### South Tibet
+# 434 Tawang
+
+##### DEFAULT VARIABLES (listed independently for each decision. Set tag-specific variables in history file.)
+# cost = SRC_PRC_provinceintegration_cost_small?50
+# cost = SRC_PRC_provinceintegration_cost_medium?75
+# cost = SRC_PRC_provinceintegration_cost_large?100
+# cost = SRC_PRC_provinceintegration_speed?90
+# cost = SRC_PRC_concessionintegration_cost?15
+# cost = SRC_PRC_concessionintegration_speed?60
+
+#	prc_integrate_guangdong_province = {
+#		icon = infiltrate_state
+#		allowed = {
+#				tag = PRC  
+             
+
+#		}
+#		visible = {
+#			tag = PRC  
+#			OR = {
+#				326 = { NOT = { is_core_of = ROOT } }
+#			}
+#		}
+#		available = {
+#			326 = {
+#				is_fully_controlled_by = ROOT
+#				OR = {
+#					compliance > 35
+#					is_core_of = ROOT
+#				}
+#			}
+#		}
+#		highlight_state_targets = {
+#			state = 1017
+#		}
+#		cost = SRC_PRC_provinceintegration_cost_large?100
+#		cost = 75
+#		fire_only_once = yes
+#		modifier = {
+#			political_power_gain = -0.20
+#		}
+#		days_remove = SRC_PRC_provinceintegration_speed?90
+#		days_remove = 30
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove prc_integrate_guangdong_province target: [From.GetName]"
+#			add_state_core = 326
+
+#			remove_cores_of_dead_tags = yes
+#		}
+#		ai_will_do = {
+#			factor = 1
+#		}
+#	}
+
+PRC_integrate_china_category = {
+
+	prc_integrate_guangdong_province = {
+		icon = infiltrate_state
+
+		visible = {
+			OR = {
+				326 = { NOT = { is_core_of = ROOT } }
+				591 = { NOT = { is_core_of = ROOT } }
+				592 = { NOT = { is_core_of = ROOT } }
+				593 = { NOT = { is_core_of = ROOT } }
+				729 = { NOT = { is_core_of = ROOT } }
+				1017 = { NOT = { is_core_of = ROOT } }
+			}
+		}
+		available = {
+			326 = { is_fully_controlled_by = ROOT }
+			591 = { is_fully_controlled_by = ROOT }
+			592 = { is_fully_controlled_by = ROOT }
+			593 = { is_fully_controlled_by = ROOT }
+			729 = { is_fully_controlled_by = ROOT }
+			1017 = { is_fully_controlled_by = ROOT }
+		}
+		highlight_state_targets = {
+			state = 326
+			state = 591
+			state = 592
+			state = 593
+			state = 729
+			state = 1017
+		}
+		#cost = SRC_PRC_provinceintegration_cost_large?100
+		cost = 100
+		fire_only_once = yes
+		modifier = {
+			political_power_gain = -0.20
+		}
+		#days_remove = SRC_PRC_provinceintegration_speed?90
+		days_remove = 30
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove prc_integrate_guangdong_province target: [From.GetName]"
+			every_state = {
+				limit = {
+					OR = {
+						state = 326
+						state = 591
+						state = 592
+						state = 593
+						state = 729
+						state = 1017
+					}
+				}
+				add_core_of = ROOT
+			}
+			every_state = {
+				limit = {
+					OR = {
+						state = 326
+						state = 592
+						state = 729
+					}
+				}
+				set_variable = { nationality = 69}
+				539= { set_state_name = "广东" }
+				1017= { set_state_name = "西广东" }
+				592= { set_state_name = "广州" }
+				729= { set_state_name = "澳门" }
+				326= { set_state_name = "香港" }
+				591= { set_state_name = "海南" }
+				set_province_name = { id = 1047 name = "广州" }
+				set_province_name = { id = 4189 name = "澳门" }
+				set_province_name = { id = 1202 name = "惠东" }
+				set_province_name = { id = 7067 name = "陆丰" }
+				set_province_name = { id = 9938 name = "汕头" }
+				set_province_name = { id = 994 name = "三亚" }
+				 729= { set_demilitarized_zone = no }
+			}
+
+			remove_cores_of_dead_tags = yes
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	prc_integrate_guangxi_province = {
+		icon = infiltrate_state
+
+		visible = {
+			OR = {
+				594 = { NOT = { is_core_of = ROOT } }
+				599 = { NOT = { is_core_of = ROOT } }
+			}
+		}
+		available = {
+			594 = { is_fully_controlled_by = ROOT }
+			599 = { is_fully_controlled_by = ROOT }
+		}
+		highlight_state_targets = {
+			state = 594
+			state = 599
+		}
+		#cost = SRC_PRC_provinceintegration_cost_large?100
+		cost = 50
+		fire_only_once = yes
+		modifier = {
+			political_power_gain = -0.20
+		}
+		#days_remove = SRC_PRC_provinceintegration_speed?90
+		days_remove = 30
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove prc_integrate_guangxi_province target: [From.GetName]"
+			every_state = {
+				limit = {
+					OR = {
+						state = 594
+						state = 599
+					}
+				}
+				add_core_of = ROOT
+			}
+
+			remove_cores_of_dead_tags = yes
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	prc_integrate_Guizhou_province = {
+		icon = infiltrate_state
+
+		visible = {
+			OR = {
+				603 = { NOT = { is_core_of = ROOT } }
+			}
+		}
+		available = {
+			603 = { is_fully_controlled_by = ROOT }
+		}
+		highlight_state_targets = {
+			state = 603
+		}
+		#cost = SRC_PRC_provinceintegration_cost_large?100
+		cost = 50
+		fire_only_once = yes
+		modifier = {
+			political_power_gain = -0.20
+		}
+		#days_remove = SRC_PRC_provinceintegration_speed?90
+		days_remove = 30
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove prc_integrate_Guizhou_province target: [From.GetName]"
+			every_state = {
+				limit = {
+					OR = {
+						state = 603
+					}
+				}
+				add_core_of = ROOT
+			}	
+
+			remove_cores_of_dead_tags = yes
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	prc_integrate_hebei_province = {
+		icon = infiltrate_state
+
+		visible = {
+			OR = {
+				608 = { NOT = { is_core_of = ROOT } }
+				609 = { NOT = { is_core_of = ROOT } }
+				614 = { NOT = { is_core_of = ROOT } }
+				1023 = { NOT = { is_core_of = ROOT } }
+			}
+		}
+		available = {
+			608 = { is_fully_controlled_by = ROOT }
+			609 = { is_fully_controlled_by = ROOT }
+			614 = { is_fully_controlled_by = ROOT }
+			1023 = { is_fully_controlled_by = ROOT }
+		}
+		highlight_state_targets = {
+			state = 608
+			state = 609
+			state = 614
+			state = 1023
+		}
+		#cost = SRC_PRC_provinceintegration_cost_large?100
+		cost = 75
+		fire_only_once = yes
+		modifier = {
+			political_power_gain = -0.20
+		}
+		#days_remove = SRC_PRC_provinceintegration_speed?90
+		days_remove = 30
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove prc_integrate_hebei_province target: [From.GetName]"
+			every_state = {
+				limit = {
+					OR = {
+			state = 608
+			state = 609
+			state = 614
+			state = 1023
+					}
+				}
+				add_core_of = ROOT
+			}	
+
+			remove_cores_of_dead_tags = yes
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	prc_integrate_henan_province = {
+		icon = infiltrate_state
+
+		visible = {
+			OR = {
+				607 = { NOT = { is_core_of = ROOT } }
+				1014 = { NOT = { is_core_of = ROOT } }
+			}
+		}
+		available = {
+			607 = { is_fully_controlled_by = ROOT }
+			1014 = { is_fully_controlled_by = ROOT }
+		}
+		highlight_state_targets = {
+			state = 607
+			state = 1014
+		}
+		#cost = SRC_PRC_provinceintegration_cost_large?100
+		cost = 75
+		fire_only_once = yes
+		modifier = {
+			political_power_gain = -0.20
+		}
+		#days_remove = SRC_PRC_provinceintegration_speed?90
+		days_remove = 30
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove prc_integrate_henan_province target: [From.GetName]"
+			every_state = {
+				limit = {
+					OR = {
+			state = 607
+			state = 1014
+					}
+				}
+				add_core_of = ROOT
+			}
+
+			remove_cores_of_dead_tags = yes
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	prc_integrate_hubei_province = {
+		icon = infiltrate_state
+
+		visible = {
+			OR = {
+				620 = { NOT = { is_core_of = ROOT } }
+				1015 = { NOT = { is_core_of = ROOT } }
+				1016 = { NOT = { is_core_of = ROOT } }
+			}
+		}
+		available = {
+			620 = { is_fully_controlled_by = ROOT }
+			1015 = { is_fully_controlled_by = ROOT }
+			1016 = { is_fully_controlled_by = ROOT }
+		}
+		highlight_state_targets = {
+			state = 620
+			state = 1015
+			state = 1016
+		}
+		#cost = SRC_PRC_provinceintegration_cost_large?100
+		cost = 75
+		fire_only_once = yes
+		modifier = {
+			political_power_gain = -0.20
+		}
+		#days_remove = SRC_PRC_provinceintegration_speed?90
+		days_remove = 30
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove prc_integrate_hubei_province target: [From.GetName]"
+			every_state = {
+				limit = {
+					OR = {
+			state = 620
+			state = 1015
+			state = 1016
+					}
+				}
+				add_core_of = ROOT
+			}
+
+			remove_cores_of_dead_tags = yes
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	prc_integrate_hunan_province = {
+		icon = infiltrate_state
+
+		visible = {
+			OR = {
+				602 = { NOT = { is_core_of = ROOT } }
+				961 = { NOT = { is_core_of = ROOT } }
+			}
+		}
+		available = {
+			602 = { is_fully_controlled_by = ROOT }
+			961 = { is_fully_controlled_by = ROOT }
+		}
+		highlight_state_targets = {
+			state = 602
+			state = 961
+		}
+		#cost = SRC_PRC_provinceintegration_cost_large?100
+		cost = 75
+		fire_only_once = yes
+		modifier = {
+			political_power_gain = -0.20
+		}
+		#days_remove = SRC_PRC_provinceintegration_speed?90
+		days_remove = 30
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove prc_integrate_hunan_province target: [From.GetName]"
+			every_state = {
+				limit = {
+					OR = {
+			state = 602
+			state = 961
+					}
+				}
+				add_core_of = ROOT
+			}
+
+			remove_cores_of_dead_tags = yes
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	prc_integrate_jiangsu_province = {
+		icon = infiltrate_state
+
+		visible = {
+			OR = {
+				613 = { NOT = { is_core_of = ROOT } }
+				598 = { NOT = { is_core_of = ROOT } }
+				1405 = { NOT = { is_core_of = ROOT } }
+			}
+		}
+		available = {
+			613 = { is_fully_controlled_by = ROOT }
+			598 = { is_fully_controlled_by = ROOT }
+			1405 = { is_fully_controlled_by = ROOT }
+		}
+		highlight_state_targets = {
+			state = 613
+			state = 598
+			state = 1405
+		}
+		#cost = SRC_PRC_provinceintegration_cost_large?100
+		cost = 75
+		fire_only_once = yes
+		modifier = {
+			political_power_gain = -0.20
+		}
+		#days_remove = SRC_PRC_provinceintegration_speed?90
+		days_remove = 30
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove prc_integrate_jiangsu_province target: [From.GetName]"
+			every_state = {
+				limit = {
+					OR = {
+			state = 613
+			state = 598
+			state = 1405
+					}
+				}
+				add_core_of = ROOT
+			}
+
+			remove_cores_of_dead_tags = yes
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+
+
+	prc_integrate_Shanghai_province = {
+		icon = infiltrate_state
+
+		visible = {
+			OR = {
+				813 = { NOT = { is_core_of = ROOT } }
+			}
+		}
+		available = {
+			813 = { is_fully_controlled_by = ROOT }
+		}
+		highlight_state_targets = {
+			state = 813
+		}
+		#cost = SRC_PRC_provinceintegration_cost_large?100
+		cost = 50
+		fire_only_once = yes
+		modifier = {
+			political_power_gain = -0.20
+		}
+		#days_remove = SRC_PRC_provinceintegration_speed?90
+		days_remove = 30
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove prc_integrate_Shanghai_province target: [From.GetName]"
+			every_state = {
+				limit = {
+					OR = {
+			state = 813
+					}
+				}
+				add_core_of = ROOT
+			}
+
+			remove_cores_of_dead_tags = yes
+			set_province_name = { id = 10076 name = "无锡" }
+			set_province_name = { id = 4042 name = "嘉兴" }
+			
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	prc_integrate_jiangxi_province = {
+		icon = infiltrate_state
+
+		visible = {
+			OR = {
+				600 = { NOT = { is_core_of = ROOT } }
+				1019 = { NOT = { is_core_of = ROOT } }
+			}
+		}
+		available = {
+			600 = { is_fully_controlled_by = ROOT }
+			1019 = { is_fully_controlled_by = ROOT }
+		}
+		highlight_state_targets = {
+			state = 600
+			state = 1019
+		}
+		#cost = SRC_PRC_provinceintegration_cost_large?100
+		cost = 75
+		fire_only_once = yes
+		modifier = {
+			political_power_gain = -0.20
+		}
+		#days_remove = SRC_PRC_provinceintegration_speed?90
+		days_remove = 30
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove prc_integrate_jiangxi_province target: [From.GetName]"
+			every_state = {
+				limit = {
+					OR = {
+			state = 600
+			state = 1019
+					}
+				}
+				add_core_of = ROOT
+			}
+
+			remove_cores_of_dead_tags = yes
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	prc_integrate_shaanxi_province = {
+		icon = infiltrate_state
+
+		visible = {
+			OR = {
+				622 = { NOT = { is_core_of = ROOT } }
+				956 = { NOT = { is_core_of = ROOT } }
+				1404 = { NOT = { is_core_of = ROOT } }
+			}
+		}
+		available = {
+			622 = { is_fully_controlled_by = ROOT }
+			956 = { is_fully_controlled_by = ROOT }
+			1404 = { NOT = { is_core_of = ROOT } }
+		}
+		highlight_state_targets = {
+			state = 622
+			state = 956
+			state = 1404
+		}
+		#cost = SRC_PRC_provinceintegration_cost_large?100
+		cost = 75
+		fire_only_once = yes
+		modifier = {
+			political_power_gain = -0.20
+		}
+		#days_remove = SRC_PRC_provinceintegration_speed?90
+		days_remove = 30
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove prc_integrate_shaanxi_province target: [From.GetName]"
+			every_state = {
+				limit = {
+					OR = {
+			state = 622
+			state = 956
+			state = 1404
+					}
+				}
+				add_core_of = ROOT
+			}
+
+			remove_cores_of_dead_tags = yes
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	prc_integrate_shanxi_province = {
+		icon = infiltrate_state
+
+		visible = {
+			OR = {
+				615 = { NOT = { is_core_of = ROOT } }
+				
+			}
+		}
+		available = {
+			615 = { is_fully_controlled_by = ROOT }
+			
+		}
+		highlight_state_targets = {
+			state = 615
+			
+		}
+		#cost = SRC_PRC_provinceintegration_cost_large?100
+		cost = 75
+		fire_only_once = yes
+		modifier = {
+			political_power_gain = -0.20
+		}
+		#days_remove = SRC_PRC_provinceintegration_speed?90
+		days_remove = 30
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove prc_integrate_shanxi_province target: [From.GetName]"
+			every_state = {
+				limit = {
+					OR = {
+			state = 615
+			
+					}
+				}
+				add_core_of = ROOT
+			}
+
+			remove_cores_of_dead_tags = yes
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	prc_integrate_shandong_province = {
+		icon = infiltrate_state
+
+		visible = {
+			OR = {
+				597 = { NOT = { is_core_of = ROOT } }
+				811 = { NOT = { is_core_of = ROOT } }
+				812 = { NOT = { is_core_of = ROOT } }
+				1020 = { NOT = { is_core_of = ROOT } }
+				1021 = { NOT = { is_core_of = ROOT } }
+				1022 = { NOT = { is_core_of = ROOT } }
+			}
+		}
+		available = {
+			597 = { is_fully_controlled_by = ROOT }
+			811 = { is_fully_controlled_by = ROOT }
+			812 = { is_fully_controlled_by = ROOT }
+			1020 = { is_fully_controlled_by = ROOT }
+			1021 = { is_fully_controlled_by = ROOT }
+			1022 = { is_fully_controlled_by = ROOT }
+		}
+		highlight_state_targets = {
+			state = 597
+			state = 811
+			state = 812
+			state = 1020
+			state = 1021
+			state = 1022
+		}
+		#cost = SRC_PRC_provinceintegration_cost_large?100
+		cost = 75
+		fire_only_once = yes
+		modifier = {
+			political_power_gain = -0.20
+		}
+		#days_remove = SRC_PRC_provinceintegration_speed?90
+		days_remove = 30
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove prc_integrate_shandong_province target: [From.GetName]"
+			every_state = {
+				limit = {
+					OR = {
+			state = 597
+			state = 811
+			state = 812
+			state = 1020
+			state = 1021
+			state = 1022
+					}
+				}
+				add_core_of = ROOT
+			}
+
+			remove_cores_of_dead_tags = yes
+			812= { set_state_name = "威海卫" }
+			811= { set_state_name = "青岛" }
+			1022= { set_state_name = "烟台" }
+			
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	prc_integrate_anhui_province = {
+		icon = infiltrate_state
+
+		visible = {
+			OR = {
+				606 = { NOT = { is_core_of = ROOT } }
+				959 = { NOT = { is_core_of = ROOT } }
+			}
+		}
+		available = {
+			606 = { is_fully_controlled_by = ROOT }
+			959 = { is_fully_controlled_by = ROOT }
+		}
+		highlight_state_targets = {
+			state = 606
+			state = 959
+		}
+		#cost = SRC_PRC_provinceintegration_cost_large?100
+		cost = 75
+		fire_only_once = yes
+		modifier = {
+			political_power_gain = -0.20
+		}
+		#days_remove = SRC_PRC_provinceintegration_speed?90
+		days_remove = 30
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove prc_integrate_anhui_province target: [From.GetName]"
+			every_state = {
+				limit = {
+					OR = {
+			state = 606
+			state = 959
+					}
+				}
+				add_core_of = ROOT
+			}
+			remove_cores_of_dead_tags = yes
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	prc_integrate_zhejiang_province = {
+		icon = infiltrate_state
+
+		visible = {
+			OR = {
+				596 = { NOT = { is_core_of = ROOT } }
+			}
+		}
+		available = {
+			596 = { is_fully_controlled_by = ROOT }
+		}
+		highlight_state_targets = {
+			state = 596
+		}
+		#cost = SRC_PRC_provinceintegration_cost_large?100
+		cost = 50
+		fire_only_once = yes
+		modifier = {
+			political_power_gain = -0.20
+		}
+		#days_remove = SRC_PRC_provinceintegration_speed?90
+		days_remove = 30
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove prc_integrate_zhejiang_province target: [From.GetName]"
+			every_state = {
+				limit = {
+					OR = {
+			state = 596
+					}
+				}
+				add_core_of = ROOT
+			}
+
+			remove_cores_of_dead_tags = yes
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	prc_integrate_fujian_province = {
+		icon = infiltrate_state
+
+		visible = {
+			OR = {
+				595 = { NOT = { is_core_of = ROOT } }
+			}
+		}
+		available = {
+			595 = { is_fully_controlled_by = ROOT }
+		}
+		highlight_state_targets = {
+			state = 595
+		}
+		#cost = SRC_PRC_provinceintegration_cost_large?100
+		cost = 50
+		fire_only_once = yes
+		modifier = {
+			political_power_gain = -0.20
+		}
+		#days_remove = SRC_PRC_provinceintegration_speed?90
+		days_remove = 30
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove prc_integrate_fujian_province target: [From.GetName]"
+			every_state = {
+				limit = {
+					OR = {
+			state = 595
+					}
+				}
+				add_core_of = ROOT
+			}
+
+			remove_cores_of_dead_tags = yes
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	prc_integrate_sichuan_province = {
+		icon = infiltrate_state
+
+		visible = {
+			OR = {
+				605 = { NOT = { is_core_of = ROOT } }
+				905 = { NOT = { is_core_of = ROOT } }
+				1402 = { NOT = { is_core_of = ROOT } }
+				1403 = { NOT = { is_core_of = ROOT } }
+				1407 = { NOT = { is_core_of = ROOT } }
+			}
+		}
+		available = {
+			605 = { is_fully_controlled_by = ROOT }
+			905 = { is_fully_controlled_by = ROOT }
+			1402 = { NOT = { is_core_of = ROOT } }
+			1403 = { NOT = { is_core_of = ROOT } }
+			1407 = { NOT = { is_core_of = ROOT } }
+		}
+		highlight_state_targets = {
+			state = 605
+			state = 905
+			state = 1402
+			state = 1403
+			state = 1407
+		}
+		#cost = SRC_PRC_provinceintegration_cost_large?100
+		cost = 50
+		fire_only_once = yes
+		modifier = {
+			political_power_gain = -0.20
+		}
+		#days_remove = SRC_PRC_provinceintegration_speed?90
+		days_remove = 30
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove prc_integrate_sichuan_province target: [From.GetName]"
+			every_state = {
+				limit = {
+					OR = {
+			state = 605
+			state = 905
+			state = 1402
+			state = 1403
+			state = 1407
+					}
+				}
+				add_core_of = ROOT
+			}
+
+			remove_cores_of_dead_tags = yes
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	prc_integrate_yunnan_province = {
+		icon = infiltrate_state
+
+		visible = {
+			OR = {
+				325 = { NOT = { is_core_of = ROOT } }
+				960 = { NOT = { is_core_of = ROOT } }
+			}
+		}
+		available = {
+			325 = { is_fully_controlled_by = ROOT }
+			960 = { is_fully_controlled_by = ROOT }
+		}
+		highlight_state_targets = {
+			state = 325
+			state = 960
+		}
+		#cost = SRC_PRC_provinceintegration_cost_large?100
+		cost = 50
+		fire_only_once = yes
+		modifier = {
+			political_power_gain = -0.20
+		}
+		#days_remove = SRC_PRC_provinceintegration_speed?90
+		days_remove = 30
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove prc_integrate_yunnan_province target: [From.GetName]"
+			every_state = {
+				limit = {
+					OR = {
+			state = 325
+			state = 960
+					}
+				}
+				add_core_of = ROOT
+			}
+
+			remove_cores_of_dead_tags = yes
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	prc_integrate_Qinghai_province = {
+		icon = infiltrate_state
+
+		visible = {
+			OR = {
+				601 = { NOT = { is_core_of = ROOT } }
+				604 = { NOT = { is_core_of = ROOT } }
+				906 = { NOT = { is_core_of = ROOT } }
+			}
+		}
+		available = {
+			601 = { is_fully_controlled_by = ROOT }
+			604 = { is_fully_controlled_by = ROOT }
+			906 = { is_fully_controlled_by = ROOT }
+		}
+		highlight_state_targets = {
+			state = 601
+			state = 604
+			state = 906
+		}
+		#cost = SRC_PRC_provinceintegration_cost_large?100
+		cost = 50
+		fire_only_once = yes
+		modifier = {
+			political_power_gain = -0.20
+		}
+		#days_remove = SRC_PRC_provinceintegration_speed?90
+		days_remove = 30
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove prc_integrate_Qinghai_province target: [From.GetName]"
+			every_state = {
+				limit = {
+					OR = {
+			state = 601
+			state = 604
+			state = 906
+					}
+				}
+				add_core_of = ROOT
+			}
+
+			remove_cores_of_dead_tags = yes
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	prc_integrate_GanNing_province = {
+		icon = infiltrate_state
+
+		visible = {
+			OR = {
+				283 = { NOT = { is_core_of = ROOT } }
+				616 = { NOT = { is_core_of = ROOT } }
+				764 = { NOT = { is_core_of = ROOT } }
+				1302 = { NOT = { is_core_of = ROOT } }
+			}
+		}
+		available = {
+			283 = { is_fully_controlled_by = ROOT }
+			616 = { is_fully_controlled_by = ROOT }
+			764 = { is_fully_controlled_by = ROOT }
+			1302 = { is_fully_controlled_by = ROOT }
+		}
+		highlight_state_targets = {
+			state = 283
+			state = 616
+			state = 764
+			state = 1302
+		}
+		#cost = SRC_PRC_provinceintegration_cost_large?100
+		cost = 50
+		fire_only_once = yes
+		modifier = {
+			political_power_gain = -0.20
+		}
+		#days_remove = SRC_PRC_provinceintegration_speed?90
+		days_remove = 30
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove prc_integrate_GanNing_province target: [From.GetName]"
+			every_state = {
+				limit = {
+					OR = {
+			state = 283
+			state = 616
+			state = 764
+			state = 1302
+					}
+				}
+				add_core_of = ROOT
+			}
+
+			remove_cores_of_dead_tags = yes
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	prc_integrate_Inner_Mongolia_province = {
+		icon = infiltrate_state
+
+		visible = {
+			OR = {
+				610 = { NOT = { is_core_of = ROOT } }
+				612 = { NOT = { is_core_of = ROOT } }
+				621 = { NOT = { is_core_of = ROOT } }
+				715 = { NOT = { is_core_of = ROOT } }
+				955 = { NOT = { is_core_of = ROOT } }
+			}
+		}
+		available = {
+			610 = { is_fully_controlled_by = ROOT }
+			612 = { is_fully_controlled_by = ROOT }
+			621 = { is_fully_controlled_by = ROOT }
+			715 = { is_fully_controlled_by = ROOT }
+			955 = { is_fully_controlled_by = ROOT }
+		}
+		highlight_state_targets = {
+			state = 610
+			state = 612
+			state = 621
+			state = 715
+			state = 955
+		}
+		#cost = SRC_PRC_provinceintegration_cost_large?100
+		cost = 50
+		fire_only_once = yes
+		modifier = {
+			political_power_gain = -0.20
+		}
+		#days_remove = SRC_PRC_provinceintegration_speed?90
+		days_remove = 30
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove prc_integrate_Inner_Mongolia_province target: [From.GetName]"
+			every_state = {
+				limit = {
+					OR = {
+			state = 610
+			state = 612
+			state = 621
+			state = 715
+			state = 955
+					}
+				}
+				add_core_of = ROOT
+			}
+
+			remove_cores_of_dead_tags = yes
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	prc_integrate_Outer_Mongolia_province = {
+		icon = infiltrate_state
+
+		visible = {
+			OR = {
+				329 = { NOT = { is_core_of = ROOT } }
+				330 = { NOT = { is_core_of = ROOT } }
+				814 = { NOT = { is_core_of = ROOT } }
+				815 = { NOT = { is_core_of = ROOT } }
+			}
+		}
+		available = {
+			329 = { is_fully_controlled_by = ROOT }
+			330 = { is_fully_controlled_by = ROOT }
+			814 = { is_fully_controlled_by = ROOT }
+			815 = { is_fully_controlled_by = ROOT }
+		}
+		highlight_state_targets = {
+			state = 329
+			state = 330
+			state = 814
+			state = 815
+		}
+		#cost = SRC_PRC_provinceintegration_cost_large?100
+		cost = 50
+		fire_only_once = yes
+		modifier = {
+			political_power_gain = -0.20
+		}
+		#days_remove = SRC_PRC_provinceintegration_speed?90
+		days_remove = 30
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove prc_integrate_Outer_Mongolia_province target: [From.GetName]"
+			every_state = {
+				limit = {
+					OR = {
+			state = 329
+			state = 330
+			state = 814
+			state = 815
+					}
+				}
+				add_core_of = ROOT
+			}
+
+			remove_cores_of_dead_tags = yes
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	prc_integrate_Xinjiang_province = {
+		icon = infiltrate_state
+
+		visible = {
+			OR = {
+				617 = { NOT = { is_core_of = ROOT } }
+				618 = { NOT = { is_core_of = ROOT } }
+				619 = { NOT = { is_core_of = ROOT } }
+				957 = { NOT = { is_core_of = ROOT } }
+				958 = { NOT = { is_core_of = ROOT } }
+				1397= { NOT = { is_core_of = ROOT } }
+				1399= { NOT = { is_core_of = ROOT } }
+				1396= { NOT = { is_core_of = ROOT } }
+				1400= { NOT = { is_core_of = ROOT } }
+				1398= { NOT = { is_core_of = ROOT } }
+				1395= { NOT = { is_core_of = ROOT } }
+				1401= { NOT = { is_core_of = ROOT } }
+
+			}
+		}
+		available = {
+			617 = { is_fully_controlled_by = ROOT }
+			618 = { is_fully_controlled_by = ROOT }
+			619 = { is_fully_controlled_by = ROOT }
+			957 = { is_fully_controlled_by = ROOT }
+			958 = { is_fully_controlled_by = ROOT }
+			1397= { is_fully_controlled_by = ROOT }
+			
+			1399={ is_fully_controlled_by = ROOT }
+			
+			1396= { is_fully_controlled_by = ROOT }
+			
+			1400= { is_fully_controlled_by = ROOT }
+			
+			1398= { is_fully_controlled_by = ROOT }
+			
+			1395= { is_fully_controlled_by = ROOT }
+			
+			1401={ is_fully_controlled_by = ROOT }
+			
+		}
+		highlight_state_targets = {
+			state = 617
+			state = 618
+			state = 619
+			state = 957
+			state = 958
+			state = 1395
+			state = 1396
+			state = 1397
+			state = 1398
+			state = 1399
+			state = 1400
+			state = 1401
+		}
+		#cost = SRC_PRC_provinceintegration_cost_large?100
+		cost = 50
+		fire_only_once = yes
+		modifier = {
+			political_power_gain = -0.20
+		}
+		#days_remove = SRC_PRC_provinceintegration_speed?90
+		days_remove = 30
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove prc_integrate_Xinjiang_province target: [From.GetName]"
+			every_state = {
+				limit = {
+					OR = {
+			state = 617
+			state = 618
+			state = 619
+			state = 957
+			state = 958
+			state = 1395
+			state = 1396
+			state = 1397
+			state = 1398
+			state = 1399
+			state = 1400
+			state = 1401
+					}
+				}
+				add_core_of = ROOT
+			}
+
+			remove_cores_of_dead_tags = yes
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	prc_integrate_Dongbei_province = {
+		icon = infiltrate_state
+
+		visible = {
+			OR = {
+				328 = { NOT = { is_core_of = ROOT } }
+				714 = { NOT = { is_core_of = ROOT } }
+				716 = { NOT = { is_core_of = ROOT } }
+				717 = { NOT = { is_core_of = ROOT } }
+				801 = { NOT = { is_core_of = ROOT } }
+				810 = { NOT = { is_core_of = ROOT } }
+			}
+		}
+		available = {
+			328 = { is_fully_controlled_by = ROOT }
+			714 = { is_fully_controlled_by = ROOT }
+			716 = { is_fully_controlled_by = ROOT }
+			717 = { is_fully_controlled_by = ROOT }
+			801 = { is_fully_controlled_by = ROOT }
+			810 = { is_fully_controlled_by = ROOT }
+		}
+		highlight_state_targets = {
+			state = 328
+			state = 714
+			state = 716
+			state = 717
+			state = 801
+			state = 810
+		}
+		#cost = SRC_PRC_provinceintegration_cost_large?100
+		cost = 50
+		fire_only_once = yes
+		modifier = {
+			political_power_gain = -0.20
+		}
+		#days_remove = SRC_PRC_provinceintegration_speed?90
+		days_remove = 30
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove prc_integrate_Dongbei_province target: [From.GetName]"
+			every_state = {
+				limit = {
+					OR = {
+			state = 328
+			state = 714
+			state = 716
+			state = 717
+			state = 801
+			state = 810
+					}
+				}
+				add_core_of = ROOT
+			}
+ 
+			remove_cores_of_dead_tags = yes
+			910= { set_state_name = "大连"}
+			set_province_name = { id = 4572 name = "长春" }
+			set_province_name = { id = 1150 name = "大连" }
+			
+			
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	prc_integrate_Outer_Dongbei_province = {
+		icon = infiltrate_state
+
+		visible = {
+			OR = {
+				408 = { NOT = { is_core_of = ROOT } }
+				409 = { NOT = { is_core_of = ROOT } }
+				657 = { NOT = { is_core_of = ROOT } }
+				809 = { NOT = { is_core_of = ROOT } }
+				1364 = { NOT = { is_core_of = ROOT } }
+				537 = { NOT = { is_core_of = ROOT } }
+			}
+		}
+		available = {
+			408 = { is_fully_controlled_by = ROOT }
+			409 = { is_fully_controlled_by = ROOT }
+			657 = { is_fully_controlled_by = ROOT }
+			809 = { is_fully_controlled_by = ROOT }
+			1364 = { is_fully_controlled_by = ROOT }
+			537 = { is_fully_controlled_by = ROOT }
+		}
+		highlight_state_targets = {
+			state = 408
+			state = 409
+			state = 657
+			state = 809
+			state = 1364
+			state = 537
+		}
+		#cost = SRC_PRC_provinceintegration_cost_large?100
+		cost = 50
+		fire_only_once = yes
+		modifier = {
+			political_power_gain = -0.20
+		}
+		#days_remove = SRC_PRC_provinceintegration_speed?90
+		days_remove = 30
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove prc_integrate_Outer_Dongbei_province target: [From.GetName]"
+			every_state = {
+				limit = {
+					OR = {
+						state = 408
+						state = 409
+						state = 657
+						state = 809
+						state = 1364
+						state = 537
+					}
+				}
+				add_core_of = ROOT
+			}
+			every_state = {
+				limit = {
+					OR = {
+						state = 408
+						state = 409
+						state = 809
+					}
+				}
+				set_variable = { nationality = 196}
+			}
+
+			remove_cores_of_dead_tags = yes
+			537= { set_state_name = "库页岛" }
+			809= { set_state_name = "海参崴" }
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	prc_integrate_Taiwan_province = {
+		icon = infiltrate_state
+
+		visible = {
+			OR = {
+					524 = { NOT = { is_core_of = ROOT } }
+					526 = { NOT = { is_core_of = ROOT } }
+			}
+		}
+		available = {
+			524 = { is_fully_controlled_by = ROOT }
+			526 = { is_fully_controlled_by = ROOT }
+		}
+		highlight_state_targets = {
+			state = 524
+			state = 526
+		}
+		#cost = SRC_PRC_provinceintegration_cost_large?100
+		cost = 50
+		fire_only_once = yes
+		modifier = {
+			political_power_gain = -0.20
+		}
+		#days_remove = SRC_PRC_provinceintegration_speed?90
+		days_remove = 30
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove prc_integrate_Taiwan_province target: [From.GetName]"
+			every_state = {
+				limit = {
+					OR = {
+						state = 524
+						state = 526
+					}
+				}
+				add_core_of = ROOT
+			}
+			every_state = {
+				limit = {
+					OR = {
+						state = 524
+						state = 526
+					}
+				}
+				set_variable = { nationality = 68}
+			}
+
+			remove_cores_of_dead_tags = yes
+			526= { set_state_name = "琉球" }
+			
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	prc_integrate_Tibet_province = {
+		icon = infiltrate_state
+
+		visible = {
+			OR = {
+					322 = { NOT = { is_core_of = ROOT } }
+					765 = { NOT = { is_core_of = ROOT } }
+					964 = { NOT = { is_core_of = ROOT } }
+					
+					1406 = { NOT = { is_core_of = ROOT } }
+			}
+		}
+		available = {
+			322 = { is_fully_controlled_by = ROOT }
+			765 = { is_fully_controlled_by = ROOT }
+			964 = { is_fully_controlled_by = ROOT }
+			1406 = { is_fully_controlled_by = ROOT }
+		}
+		highlight_state_targets = {
+			state = 322
+			state = 765
+			state = 964
+			state = 1406
+		}
+		#cost = SRC_PRC_provinceintegration_cost_large?100
+		cost = 50
+		fire_only_once = yes
+		modifier = {
+			political_power_gain = -0.20
+		}
+		#days_remove = SRC_PRC_provinceintegration_speed?90
+		days_remove = 30
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove prc_integrate_Tibet_province target: [From.GetName]"
+			every_state = {
+				limit = {
+					OR = {
+			state = 322
+			state = 765
+			state = 964
+			state = 1406
+					}
+				}
+				add_core_of = ROOT
+			}
+
+			remove_cores_of_dead_tags = yes
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	prc_integrate_South_Tibet_province = {
+		icon = infiltrate_state
+
+		visible = {
+			OR = {
+					434 = { NOT = { is_core_of = ROOT } }
+			}
+		}
+		available = {
+			434 = { is_fully_controlled_by = ROOT }
+		}
+		highlight_state_targets = {
+			state = 434
+		}
+		#cost = SRC_PRC_provinceintegration_cost_large?100
+		cost = 50
+		fire_only_once = yes
+		modifier = {
+			political_power_gain = -0.20
+		}
+		#days_remove = SRC_PRC_provinceintegration_speed?90
+		days_remove = 30
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove prc_integrate_South_Tibet_province target: [From.GetName]"
+			every_state = {
+				limit = {
+					OR = {
+			state = 434
+					}
+				}
+				add_core_of = ROOT
+			}
+
+			remove_cores_of_dead_tags = yes
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}

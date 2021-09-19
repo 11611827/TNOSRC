@@ -1,0 +1,86 @@
+PRC_agriculture_category  = {
+PRC_Officers_and_soldiers_go_to_the_countryside = {
+	icon = generic_form_nation
+		available = {
+		        or= {
+                 has_idea = PRC_agriculture_situation_1
+                 has_idea = PRC_agriculture_situation_2
+                }
+		}
+		visible =  {
+	        or = {
+			  has_idea = PRC_agriculture_situation_1
+			  has_idea = PRC_agriculture_situation_2
+		    }
+		}
+		
+		ai_will_do = {
+			factor = 200
+		}
+		cost = 35#决议花多少pp
+		days_remove = 5 # 完成后维持5天再移除
+		days_re_enable = 5 # 将在5天后显示于界面中，可以再次选择
+		remove_effect = {
+         add_to_variable = {
+             var = agriculture_situation   
+             value = 10 }
+		 stability_factor = 0.1
+          }
+	}
+PRC_agricultural_emergency_appropriation = {
+    icon = generic_form_nation
+	    available = {
+		    or = {
+			   has_idea = PRC_agriculture_situation_1
+			   has_idea = PRC_agriculture_situation_2
+			   
+	        }
+		}
+		visible = {
+		    or = {
+			  has_idea = PRC_agriculture_situation_1
+			  has_idea = PRC_agriculture_situation_2
+		    }
+		}
+		
+		ai_will_do = {
+		     factor = 200
+		}
+		cost = 30
+		days_remove = 0
+		days_re_enable = 0
+		remove_effect = {
+		 add_to_variable = { agriculture_situation = 5 }
+		 stability_factor = 0.05
+		 }
+	}
+PRC_emergency_grain_import = {
+     icon = generic_form_nation
+	     available = {
+		        or = {
+				 has_idea = PRC_agriculture_situation_1
+				 has_idea = PRC_agriculture_situation_2
+				}
+		 }
+		 visible = {
+		       or = {
+			    has_idea = PRC_agriculture_situation_1
+				has_idea = PRC_agriculture_situation_2
+			   }
+		 }
+		 
+		 ai_will_do = {
+		       factor = 200
+	     }
+		 cost = 50
+		 days_remove = 0
+		 days_re_enable = 10
+		 remove_effect = {
+		 add_to_variable = { agriculture_situation = 15 }
+		 stability_factor = 0.15
+		 communism_drift = -0.2
+		 }
+	}
+
+
+}

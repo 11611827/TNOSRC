@@ -1,0 +1,758 @@
+ideas = {
+	country = {
+		PRC_Northwestern_Polytechnical = {
+
+			allowed = {
+				original_tag = PRC
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: added idea PRC_Northwestern_Polytechnical"
+			}
+
+			removal_cost = -1
+
+			picture =PRC_Northwestern_Polytechnical
+
+			modifier = {
+				conversion_cost_civ_to_mil_factor= -0.1
+				conversion_cost_mil_to_civ_factor = -0.1
+				research_speed_factor = 0.1
+				consumer_goods_factor = -0.1
+			}
+
+			
+		}
+		PRC_bandits_attacked = {
+
+			allowed = {
+				original_tag = PRC
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: added idea PRC_bandits_attacked"
+			}
+
+			removal_cost = -1
+
+			picture =PRC_bandits_attacked
+
+			modifier = {
+				political_power_factor = -0.1
+				political_power_gain  = -0.1
+				stability_weekly = -0.01
+				war_support_weekly = -0.01
+			}
+
+			
+		}
+		PRC_ussr_rencai = {
+
+			allowed = {
+				original_tag = PRC
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: added idea PRC_ussr_rencai "
+			}
+
+			removal_cost = -1
+
+			picture =PRC_ussr_rencai
+
+			modifier = {
+		       line_change_production_efficiency_factor  = 0.2
+			   conversion_cost_civ_to_mil_factor= -0.2
+			   conversion_cost_mil_to_civ_factor = -0.2
+			   research_speed_factor = 0.1
+			   consumer_goods_factor = -0.1 
+			}
+
+			
+		}
+		PRC_kangzhan_laobing = {
+
+			allowed = {
+				original_tag = PRC
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: added idea PRC_kangzhan_laobing "
+			}
+
+			removal_cost = -1
+
+			picture =PRC_kangzhan_laobing
+
+			modifier = {
+			experience_gain_army_factor = -0.1
+			experience_gain_army_unit_factor = -0.1
+		    army_attack_factor =-0.10
+			army_defence_factor = -0.10
+			political_power_factor = -0.2
+			stability_factor = -0.15
+			war_support_factor = -0.1
+			command_power_gain_mult = -0.2
+			weekly_manpower = 1000
+			}
+
+			
+		}
+		PRC_Maoist = {
+			allowed = {
+				original_tag = PRC
+				always = no
+			}
+			allowed_civil_war = {
+				always = yes
+			}
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: added idea PRC_Maoist "
+			}
+			removal_cost = -1
+			picture =PRC_Maoist 
+			modifier = {
+			political_power_factor = 0.25
+		    stability_factor = 0.1
+		    war_support_factor = 0.05
+		    military_leader_cost_factor = -0.10
+		    drift_defence_factor = 0.5
+		    socialist_drift = 0.03 
+			communist_drift = 0.03 	
+			join_faction_tension = -1
+			}		
+		}
+		PRC_guojizhongdui = {
+			allowed = {
+				original_tag = PRC
+				always = no
+			}
+			allowed_civil_war = {
+				always = yes
+			}
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: added idea PRC_guojizhongdui "
+			}
+			removal_cost = -1
+			picture =PRC_guojizhongdui
+			modifier = {
+			send_volunteer_size = 3
+			send_volunteers_tension = -1
+			send_volunteer_divisions_required = -1
+			
+			}		
+		}
+		PRC_collectivization_of_agriculture_1 = {
+			allowed = {
+				original_tag = PRC
+				always = no
+			}
+			allowed_civil_war = {
+				always = yes
+			}
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: added idea PRC_collectivization_of_agriculture_1 "
+			}
+			removal_cost = -1
+			picture = PRC_collectivization_of_agriculture
+			modifier = {
+			consumer_goods_factor = -0.05
+			
+			}		
+		}
+		PRC_renmin_gongshe= {
+			allowed = {
+				original_tag = PRC
+				always = no
+			}
+			allowed_civil_war = {
+				always = yes
+			}
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: added idea PRC_renmin_gongshe "
+			}
+			removal_cost = -1
+			picture = PRC_renmin_gongshe
+			modifier = {
+			consumer_goods_factor = -0.1
+			production_factory_start_efficiency_factor = 0.1 
+			
+			}		
+		}
+		PRC_gonngnonghuzhu = {
+			allowed = {
+				original_tag = PRC
+				always = no
+			}
+			allowed_civil_war = {
+				always = yes
+			}
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: added idea  PRC_gonngnonghuzhu"
+			}
+			removal_cost = -1
+			picture = PRC_gonngnonghuzhu
+			modifier = {
+			consumer_goods_factor = -0.1
+			production_factory_efficiency_gain_factor = 0.1    
+			}		
+		}
+		PRC_nongyejitihua_2 = {
+			allowed = {
+				original_tag = PRC
+				always = no
+			}
+			allowed_civil_war = {
+				always = yes
+			}
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: added idea PRC_nongyejitihua_2 "
+			}
+			removal_cost = -1
+			picture = PRC_nongyejitihua_2
+			modifier = {
+			consumer_goods_factor = -0.1
+			production_factory_efficiency_gain_factor = 0.1 
+			local_building_slots_factor = 0.1    
+			}		
+		}
+		PRC_gongyefazhan = {
+			allowed = {
+				original_tag = PRC
+				always = no
+			}
+			allowed_civil_war = {
+				always = yes
+			}
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: added idea PRC_gongyefazhan "
+			}
+			removal_cost = -1
+			picture = PRC_gongyefazhan
+			modifier = {
+			production_factory_efficiency_gain_factor = 0.1    
+            industrial_capacity_factory = 0.1                             
+			}		
+		}
+		PRC_yuanyuanbuduangongren = {
+			allowed = {
+				original_tag = PRC
+				always = no
+			}
+			allowed_civil_war = {
+				always = yes
+			}
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: added idea PRC_yuanyuanbuduangongren "
+			}
+			removal_cost = -1
+			picture = PRC_yuanyuanbuduangongren
+			modifier = {
+			consumer_goods_factor = 0.4    
+            industrial_capacity_factory = -0.1      
+			production_speed_buildings_factor = 0.1
+			                         
+			}		
+		}
+		PRC_diqugongye = {
+			allowed = {
+				original_tag = PRC
+				always = no
+			}
+			allowed_civil_war = {
+				always = yes
+			}
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: added idea PRC_diqugongye"
+			}
+			removal_cost = -1
+			picture = PRC_diqugongye
+			modifier = {
+           global_building_slots_factor = 0.05                          
+           global_building_slots = 0.05                             
+           local_building_slots_factor = 0.05                           
+           local_building_slots = 0.05                            
+			}		
+		}
+		PRC_land_reform = {
+			allowed = {
+				original_tag = PRC
+				always = no
+			}
+			allowed_civil_war = {
+				always = yes
+			}
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: added idea PRC_land_reform "
+			}
+			removal_cost = -1
+			picture =PRC_land_reform
+			modifier = {
+			consumer_goods_factor = -0.05
+			political_power_gain  = 0.05
+			}		
+		}
+		PRC_army_debuff_placeholder = {
+			allowed = {
+				original_tag = PRC
+				always = no
+			}
+
+			removal_cost = -1
+
+			picture = PRC_army
+
+			allowed_civil_war = {always = yes}
+
+			on_add = {log = "[GetDateText]: [Root.GetName]: added idea PRC_army_debuff_placeholder"}
+		}
+		PRC_for_the_people = {
+			allowed = {
+				original_tag = PRC
+				always = no
+			}
+
+			removal_cost = -1
+
+			picture = PRC_army
+			modifier = {
+			stability_factor = 0.05
+			communist_drift = 0.01
+			socialist_drift = 0.01
+			}
+			equipment_bonus = {
+				infantry_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+			}
+			allowed_civil_war = {always = yes}
+
+			on_add = {log = "[GetDateText]: [Root.GetName]: added idea PRC_for_the_people"}
+		}
+		PRC_tunnel_warfare_1 = {
+			allowed = {
+				original_tag = PRC
+				always = no
+			}
+
+			removal_cost = -1
+
+			picture = PRC_tunnel_warfare
+			modifier = {
+			conscription = 0.005
+			conscription_factor = 0.01
+			training_time_army_factor = -0.05
+			}
+		}
+		PRC_tunnel_warfare_2 = {
+			allowed = {
+				original_tag = PRC
+				always = no
+			}
+
+			removal_cost = -1
+
+			picture = PRC_tunnel_warfare
+			modifier = {
+			conscription = 0.01
+			conscription_factor = 0.02
+			training_time_army_factor = -0.1
+			army_core_attack_factor = 0.1
+			army_core_defence_factor = 0.1
+			}
+		}
+		PRC_tunnel_warfare_3 = {
+			allowed = {
+				original_tag = PRC
+				always = no
+			}
+
+			removal_cost = -1
+
+			picture = PRC_tunnel_warfare
+			modifier = {
+			conscription = 0.01
+			conscription_factor = 0.02
+			training_time_army_factor = -0.1
+			army_core_attack_factor = 0.2
+			army_core_defence_factor = 0.2
+			conscription_total_factor = 0.05
+			}
+		}
+		PRC_kanbujiandeyaosai = {
+		    allowed = {
+			    original_tag = PRC
+				always = no
+			}
+			
+			removal_cost = -1
+			
+			picture = PRC_kanbujiandeyaosai
+			modifier = {
+			army_core_defence_factor = 0.3
+			army_core_attack_factor = 0.4
+			equipment_capture = 0.1
+			}
+		}
+		PRC_guanbingpingdeng = {
+		    allowed = {
+			    original_tag = PRC
+				always = no
+			}
+			
+			removal_cost = -1
+			
+			picture = PRC_guanbingpingdeng
+			modifier = {
+			army_attack_factor = 0.08
+			army_defence_factor = 0.08
+			army_org_factor = -0.08
+			}
+		}
+		PRC_pingdengdejundui = {
+		    allowed = {
+			    original_tag = PRC
+				allowed = no
+			}
+			
+			removal_cost = -1
+			
+			picture = PRC_pingdengdejundui
+			modifier = {
+			army_attack_factor = 0.05
+			army_defence_factor =0.05
+			experience_gain_factor = -0.1
+		    }
+		}
+		PRC_gongchanzhuyidewuzhuang = {
+		    allowed = {
+			    original_tag = PRC
+				allowed = no
+			}
+			
+			removal_cost = -1
+			
+			picture = PRC_gongchanzhuyidewuzhuang
+			modifier = {
+			army_attack_factor = 0.1
+			army_defence_factor = 0.1
+			experience_gain_factor = -0.1
+			army_org_factor = 0.1
+			}
+		}
+		PRC_junduidashengchanyundong = {
+		    allowed = {
+			    original_tag = PRC
+				allowed = no
+			}
+			
+			removal_cost = -1
+			
+			picture = PRC_junduidashengchanyundong
+			modifier = {
+			production_speed_buildings_factor = 0.1
+			war_support_weekly_factor = 0.1
+			communism_drift = 0.1
+			}
+		}
+		PRC_renmindejundui = {
+		    allowed = {
+			    original_tag = PRC
+				allowed = no
+			}
+			
+			removal_cost = -1
+			
+			picture = PRC_renmindejundui
+			modifier = {
+			army_attack_factor = 0.095
+			army_defence_factor = 0.095
+			army_org_factor = 0.01
+			experience_gain_factor = -0.05
+			training_time_army_factor = -0.1
+			production_speed_buildings_factor = 0.1
+			stability_weekly_factor = 0.01
+			}
+		}
+		PRC_yansujunduijilv = {
+		    allowed = {
+			    original_tag = PRC
+				allowed = no
+			}
+			
+			removal_cost = -1
+			
+			picture = PRC_yansujunduijilv
+			modifier = {
+			army_attack_factor = 0.05
+			army_defence_factor = 0.05
+			}
+		}
+		PRC_xindejunshizhihuixitong = {
+		    allowed = {
+			    original_tag = PRC
+				allowed = no
+			}
+			
+			removal_cost = -1
+			
+			picture = PRC_xindejunshizhihuixitong
+			modifier = {
+			army_org_factor = 0.2
+			experience_gain_factor = 0.4
+			}
+		}
+		PRC_gaoxiaodezhihuixitong = {
+		    allowed = {
+			    original_tag = PRC
+				allowed = no
+			}
+			
+			removal_cost = -1
+			
+			picture = PRC_gaoxiaodezhihuixitong
+			modifier = {
+			experience_gain_factor = 0.4
+			army_org_factor = 0.3
+			planning_speed = 0.2
+			max_planning = 0.1
+			}
+		}
+		PRC_yankedejunduijilv = {
+		    allowed = {
+			    original_tag = PRC
+				allowed = no
+			}
+		    
+			removal_cost = -1
+			
+			picture = PRC_yankedejunduijilv
+			modifier = {
+			army_org_factor = 0.3
+			war_support_factor = -0.05
+            }
+		}
+		PRC_xunliandiyi = {
+		    allowed = {
+			    original_tag = PRC
+				allowed = no
+			}
+			
+			removal_cost = -1
+			
+			picture = PRC_xunliandiyi
+			modifier = {
+			army_org_factor = 0.2
+			experience_gain_army = 0.3
+			supply_consumption_factor = 0.2
+			war_support_factor = -0.05
+			}
+		}
+		PRC_hongsedegangtiezhishi = {
+		    allowed = {
+			    original_tag = PRC
+				allowed = no
+			}
+			
+			removal_cost = -1
+			
+			picture = PRC_hongsedegangtiezhishi
+			modifier = {
+			army_org_factor = 0.5
+			experience_gain_army = 0.35
+			supply_consumption_factor = 0.2
+			planning_speed = 0.3
+			max_planning = 0.2
+			experience_gain_factor = 0.5
+			}
+		}
+		PRC_agriculture_situation_1 = {
+		    allowed = {
+			    original_tag = PRC
+				allowed = no
+			}
+			
+			removal_cost = -1
+			
+			picture = PRC_agriculture_situation_1
+			modifier = {
+			monthly_population = -0.15
+			stability_weekly_factor = -0.01
+			war_support_weekly_factor = -0.01
+			stability_factor = -0.8
+		    war_support_factor = -0.8
+			communism_drift = -0.03
+			}
+		}
+		PRC_agriculture_situation_2 = {
+		    allowed = {
+			    original_tag = PRC
+				allowed = no
+			}
+			
+			removal_cost = -1
+			
+			picture = PRC_agriculture_situation_2
+			modifier = {
+			communism_drift = -0.01
+			stability_weekly_factor = -0.005
+			war_support_weekly_factor = -0.005
+			stability_factor = -0.6
+		    war_support_factor = -0.6
+			}
+		}
+		PRC_agriculture_situation_3 = {
+		    allowed = {
+			    original_tag = PRC
+				allowed = no
+			}
+			
+			removal_cost = -1
+			
+			picture = PRC_agriculture_situation_3
+			modifier = {
+			stability_factor = -0.1
+		    war_support_factor = -0.1
+			}
+		}
+		PRC_agriculture_situation_4 = {
+		    allowed = {
+			    original_tag = PRC
+				allowed = no
+			}
+			
+			removal_cost = -1
+			
+			picture = PRC_agriculture_situation_4
+			modifier = {
+			stability_weekly_factor = 0.005
+			production_factory_efficiency_gain_factor = 0.005
+			stability_factor = 0.1
+		    war_support_factor = 0.15
+			production_speed_buildings_factor = 0.05
+			}
+		}
+		PRC_agriculture_situation_5 = {
+		    allowed = {
+			    original_tag = PRC
+				allowed = no
+			}
+			
+			removal_cost = -1
+			
+			picture = PRC_agriculture_situation_5
+			modifier = {
+			production_factory_efficiency_gain_factor = 0.008
+			production_speed_buildings_factor = 0.008
+			stability_weekly_factor = 0.08
+			stability_factor = 0.15
+		    war_support_factor = 0.2
+			monthly_population = 0.03
+			}
+		}	
+			
+	}
+	
+	head_of_government = {
+		PRC_Dong_Biwu = {   
+			on_add = {log = "[GetDateText]: [Root.GetName]: add idea PRC_minister_Dong_Biwu"}
+			picture = PRC_minister_Dong_Biwu
+			
+			allowed = {
+				original_tag = PRC
+			}
+			
+			traits = { head_of_government
+					communist
+					popular_figurehead 
+			}
+		}
+	}
+
+	economy_minister = {
+		PRC_Chen_Yun = {   
+			on_add = {log = "[GetDateText]: [Root.GetName]: add idea PRC_minister_Chen_Yun"}
+			picture = PRC_minister_Chen_Yun
+			
+			allowed = {
+				original_tag = PRC
+			}
+			
+			traits = { 
+				economy_minister
+			    communist
+				eco_mixed_economy
+			}
+		}
+	
+	PRC_Mao_Zemin = {   
+			on_add = {log = "[GetDateText]: [Root.GetName]: add idea PRC_minister_Mao_Zemin"}
+			picture = PRC_minister_Mao_Zemin
+			
+			allowed = {
+				original_tag = PRC
+			}
+			
+			traits = { 
+			    economy_minister
+				eco_balanced_budget_economy
+			}
+		}
+	}
+
+	foreign_minister  = {
+		PRC_Zhou_Enlai = {   
+			on_add = {log = "[GetDateText]: [Root.GetName]: add idea PRC_minister_Zhou_Enlai "}
+			picture = PRC_minister_Zhou_Enlai
+			
+			allowed = {
+				original_tag = PRC
+			}
+			
+			traits = { 
+				foreign_minister
+				communist
+				ideological_crusader
+			}
+		}
+	}
+
+	security_minister = {
+		PRC_Li_Kenong= {   
+			on_add = {log = "[GetDateText]: [Root.GetName]: add idea  PRC_minister_Li_Kenong"}
+			picture = PRC_minister_Li_Kenong
+			
+			allowed = {
+				original_tag = PRC
+			}
+			
+			traits = { 
+				security_minister
+				communist
+				backroom_backstabber
+				prince_of_terror
+			}
+		}
+	}
+}

@@ -1,0 +1,42 @@
+SRC_ziye={
+	play_yaa={
+		fire_only_once = yes
+		remove_effect = {
+			YAA = {change_tag_from = FROM }
+		}
+	}
+	play_shc={
+		fire_only_once = yes
+		remove_effect = {
+			SHC= {change_tag_from =FROM }
+		}
+	}
+	play_gng={
+		fire_only_once = yes
+		remove_effect = {
+			GNG = {change_tag_from = FROM }
+		}
+	}
+	play_yun={
+		fire_only_once = yes
+		remove_effect = {
+			YUN = {change_tag_from =  FROM }
+		}
+	}
+	play_chi={
+		fire_only_once = yes
+		remove_effect = {
+			CHI = {change_tag_from = FROM  }
+		}
+	}
+	play_ziye={
+		fire_only_once = yes
+		remove_effect = {
+			SIK = { annex_country = { target = PRC } }
+			hidden_effect = {
+				country_event = SRCziye.1
+			}
+	    ｝	
+	}
+}
+

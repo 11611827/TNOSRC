@@ -1,0 +1,883 @@
+PRC_wunianjihua= {
+	gongrenpengxun = {
+
+		visible = {
+			check_variable = { PRC_budget > 0 }
+		}
+
+		modifier = {
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		days_remove = 30
+
+		days_re_enable = 30
+
+		cost = 10
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision gongrenpengxun"
+			custom_effect_tooltip = gongrenpengxun_tt
+			add_to_variable = { national_debt = 150 }
+			add_to_variable= { PRC_budget = -0.5 }
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove gongrenpengxun"
+			TNO_improve_industrial_expertise_med = yes
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = industry
+			}
+			add_to_variable = { GDP = 55 }
+			add_to_variable = { misc_income = 999 }
+		}
+	}
+	touzijianshe = {
+
+		visible = {
+			check_variable = { PRC_budget > 0 }
+		}
+
+		modifier = {
+			production_speed_buildings_factor = 0.15
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		days_remove = 45
+
+		days_re_enable = 30
+
+		cost = 15
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision touzijianshe"
+			custom_effect_tooltip = touzijianshe_tt
+			add_to_variable = { national_debt = 100 }
+			add_to_variable= { PRC_budget = -1 }
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove touzijianshe"
+			add_to_variable = { GDP = 75 }
+			add_to_variable = { misc_income = 999 }
+			
+			custom_effect_tooltip = touzijianshe
+		}
+	}	
+	guligongrenzuzhi = {
+		visible = {
+			OR = {
+				has_government = communist
+				has_government = socialist
+			}
+			check_variable = { PRC_budget > 0 }
+		}
+		modifier = {
+			political_power_gain = 0.35
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		days_remove = 60
+		days_re_enable = 30
+		cost = 10
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision guligongrenzuzhi"
+			add_to_variable= { PRC_budget = -0.5 }
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove guligongrenzuzhi"
+			custom_effect_tooltip = guligongrenzuzhi_tt
+			TNO_improve_industrial_expertise_med = yes
+			hidden_effect = {
+				if = {
+					limit = {
+						has_government = communist
+					}
+					add_popularity = {
+						ideology = socialist
+						popularity = 0.035
+					}
+				}
+				if = {
+					limit = {
+						has_government = socialist
+					}
+					add_popularity = {
+						ideology = socialist
+						popularity = 0.035
+					}
+				}
+			}
+		}
+	}
+    PRC_ww = { 
+	  allowed = { tag = PRC}
+	  
+	    icon = generic_mission
+	    available = {
+			original_tag = PRC
+			NOT = {
+				PRC= {
+					has_country_flag = PRC_ww
+				}
+			}
+		}
+		activation = { tag = prc }
+		selectable_mission = no
+		days_mission_timeout = 3650
+		is_good = no
+		fire_only_once = yes
+		
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove PRC_ww"
+			clr_country_flag = PRC_ww
+			set_country_flag = PRC_liuwu
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_ww"
+			custom_effect_tooltip = PRC_ww
+			
+		}
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout PRC_ww"
+			clr_country_flag = PRC_ww
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	  
+	  
+
+	PRC_jungong = {
+		visible = {
+			check_variable = { PRC_budget > 0 }
+		}
+		allowed = {
+			tag = PRC
+		}
+		days_remove = 30
+		cost = 20
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_jungong"
+			custom_effect_tooltip = PRC_jungong_tt
+			add_to_variable= { PRC_budget = -3 }
+		}
+		modifier = {
+			consumer_goods_factor = 0.10
+		}
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 1
+						include_locked = no
+					}
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	PRC_mingong = {
+		visible = {
+			check_variable = { PRC_budget > 0 }
+		}
+		allowed = {
+			tag = PRC
+		}
+		days_remove = 25
+		cost = 15
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_mingong"
+			custom_effect_tooltip = PRC_mingong_tt
+		    add_to_variable= { PRC_budget = -3 }
+		}
+		modifier = {
+			consumer_goods_factor = 0.1
+		}
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 1
+						include_locked = no
+					}
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	PRC_jijian = {
+		visible = {
+			check_variable = { PRC_budget > 0 }
+		}
+		allowed = {
+			tag = PRC
+		}
+		days_remove = 25
+		cost = 10
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_jijian"
+			custom_effect_tooltip = PRC_jijian_tt
+		    add_to_variable= { PRC_budget = -2 }
+		}
+		modifier = {
+			consumer_goods_factor = 0.1
+		}
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = {
+					infrastructure < 10
+					free_building_slots = {
+						building = infrastructure
+						size > 1
+						include_locked = no
+					}
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					infrastructure < 10
+					free_building_slots = {
+						building = infrastructure
+						size > 1
+						include_locked = no
+					}
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	PRC_nongchurenkou = {
+	    visible = {
+			check_variable = { PRC_budget > 0 }
+		}
+		allowed = {
+			tag = PRC
+		}
+		days_remove = 30
+		cost = 10
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_nongchurenkou"
+			custom_effect_tooltip = PRC_nongchurenkou_tt
+			add_to_variable= { PRC_budget = -0.75 }
+		}
+		modifier = {
+			consumer_goods_factor = 0.1
+			production_speed_buildings_factor = 0.25
+		}
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = {
+					OR = {
+						has_state_category = rural
+						has_state_category = town
+						has_state_category = pastoral
+					}
+				}
+				add_manpower = 5500
+				
+			}
+			random_owned_controlled_state = {
+				limit = {
+					OR = {
+						has_state_category = large_town
+						has_state_category = city
+						has_state_category = large_city
+					}
+				}
+				add_manpower = 5500
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	PRC_chengshirenkou = {
+		visible = {
+			check_variable = { PRC_budget > 0 }
+		}
+		allowed = {
+			tag = PRC
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_chengshirenkou"
+			custom_effect_tooltip = PRC_chengshirenkou_tt
+			add_to_variable= { PRC_budget = -0.75 }
+		}
+		days_remove = 25
+		cost = 15
+		modifier = {
+			consumer_goods_factor = 0.1
+		}
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = {
+					OR = {
+						has_state_category = large_town
+						has_state_category = city
+						has_state_category = large_city
+					}
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					OR = {
+						has_state_category = large_town
+						has_state_category = city
+						has_state_category = large_city
+					}
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	
+	
+	PRC_touzigongye = {
+	    visible = {
+			check_variable = { PRC_budget > 0 }
+		}
+		allowed = {
+			tag = PRC
+		}
+		days_remove = 25
+		cost = 15
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_touzigongye"
+			custom_effect_tooltip = PRC_touzigongye_tt
+			add_to_variable= { PRC_budget = -1 }
+		}
+		remove_effect = {
+			random_list = {
+				33 = {
+					add_tech_bonus = {
+						bonus = 0.5
+						uses = 1
+						category = industry
+					}
+				}
+				33 = {
+					add_tech_bonus = {
+						bonus = 0.5
+						uses = 1
+						category = construction_tech
+					}
+				}
+				33 = {
+					add_tech_bonus = {
+						bonus = 0.5
+						uses = 1
+						category = electronics
+					}
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+
+	
+	
+	PRC_waizizhaoshang = {
+	    visible = {
+			check_variable = { PRC_budget > 0 }
+		}
+        	allowed = {
+			tag = PRC
+		}
+		modifier = {
+			political_power_gain = 0.1
+			consumer_goods_factor = 0.1
+		}
+
+		ai_will_do = {
+			factor = 20
+
+			modifier = {
+				factor = 0
+				political_power_growth < 0.15
+			}
+		}
+
+		days_remove = 30
+
+		days_re_enable = 75
+
+		cost = 10
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_waizizhaoshang"
+			add_to_variable= { PRC_budget = 3 }
+			custom_effect_tooltip = PRC_waizizhaoshang_tt
+		}
+	}
+	
+	
+	
+	PRC_gongyeyanfa = {
+        visible = {
+			check_variable = { PRC_budget > 0 }
+		}	
+		allowed = {
+			tag = PRC
+		}
+		days_remove = 30
+
+		days_re_enable = 75
+	
+		cost = 20
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = PRC_gongyeyanfa
+				any_owned_state = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = no
+					}
+				}
+			}
+		}
+		modifier = {consumer_goods_factor = 0.1 }
+
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				num_of_factories < 5
+				factor = 10
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_gongyeyanfa"
+			add_to_variable= { PRC_budget = -2 }
+		}
+		fixed_random_seed = no
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove PRC_gongyeyanfa"
+			custom_effect_tooltip = PRC_gongyeyanfa_tt
+			random_list = {
+				30 = {
+					add_offsite_building = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+				30 = {
+					random_owned_controlled_state = {
+						limit = {
+							free_building_slots = {
+								building = industrial_complex
+								size > 0
+								include_locked = no
+							}
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+				20 = {
+					add_offsite_building = {
+						type = arms_factory
+						level = 1
+					}
+				}
+				20 = {
+					random_owned_controlled_state = {
+						limit = {
+							free_building_slots = {
+								building = arms_factory
+								size > 0
+								include_locked = no
+							}
+						}
+						add_building_construction = {
+							type = arms_factory
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+			}
+		}
+	}
+   
+	
+
+	PRC_shengfen = {
+		allowed = {
+			tag = PRC
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_shengfen"
+            add_to_variable= { PRC_budget = -5 }
+            custom_effect_tooltip = PRC_shengfen_tt			
+		}
+		days_remove = 3	
+		cost = 35
+		modifier = {
+			consumer_goods_factor = 0.1
+		}
+		remove_effect = {
+			random_list = {
+				40 = {
+					random_owned_controlled_state = {
+						limit = {
+							has_state_category = pastoral
+						}
+						set_state_category = city
+					}
+				}
+				30 = {
+					random_owned_controlled_state = {
+						limit = {
+							has_state_category = rural
+						}
+						set_state_category = city
+					}
+				}
+				20 = {
+					random_owned_controlled_state = {
+						limit = {
+							has_state_category = pastoral
+						}
+						set_state_category = large_city
+					}
+				}
+				50 = {
+					random_owned_controlled_state = {
+						limit = {
+							has_state_category = large_town
+						}
+						set_state_category = city
+					}
+				}
+				60 = {
+					random_owned_controlled_state = {
+						limit = {
+							has_state_category = city
+						}
+						set_state_category = megalopolis
+					}
+				}
+				70 = {
+					random_owned_controlled_state = {
+						limit = {
+							has_state_category = large_city
+						}
+						set_state_category =  megalopolis
+					}
+				}
+				10 = {
+					random_owned_controlled_state = {
+						limit = {
+							has_state_category = town
+						}
+						set_state_category = city
+					}
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+    }
+	PRC_liuwu = {
+		allowed = {
+			always = no
+		}
+
+		icon = generic_mission
+
+		available = {
+			original_tag = PRC
+			NOT = {
+				PRC = {
+					has_country_flag =PRC_liuwu 
+				}
+			}
+		}
+
+		visible = {
+			original_tag = PRC
+			PRC = {
+				has_country_flag = PRC_liuwu
+			}
+		}
+
+		selectable_mission = no
+		days_mission_timeout = 3650
+		is_good = no
+		fire_only_once = yes
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove PRC_liuwu"
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_liuwu"
+			add_to_variable= { PRC_budget = -5 }
+			
+		}
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout PRC_liuwu"
+			clr_country_flag = PRC_liuwu
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	PRC_expand_dihua_iron = {
+	    visible = {
+			check_variable = { PRC_budget > 0 }
+		}
+		allowed = {
+			tag = PRC
+		}
+		days_remove = 100
+		cost = 20
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_expand_dihua_iron"
+			add_to_variable = { PRC_budget = -9 }
+			custom_effect_tooltip = PRC_expand_dihua_iron_tt
+		}
+		remove_effect = {
+			
+		617 = {
+				add_resource = {
+					type = steel
+					amount = 20
+				}
+			}
+		}
+		modifier = {
+			consumer_goods_factor = 0.1
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	PRC_exploit_oilrock = {
+	    visible = {
+			check_variable = { PRC_budget > 0 }
+		}
+		allowed = {
+			tag = PRC
+		}
+		days_remove = 50
+		cost = 15
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_exploit_oilrock"
+			add_to_variable = { PRC_budget = -9 }
+			custom_effect_tooltip = PRC_expand_dihua_iron_tt
+		}
+		remove_effect = {
+			
+		958 = {
+				add_resource = {
+					type = oil
+					amount = 20
+				}
+			}
+		}
+		modifier = {
+			consumer_goods_factor = 0.1
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	PRC_nonferrous_metal = {
+	    visible = {
+			check_variable = { PRC_budget > 0 }
+		}
+		allowed = {
+			tag = PRC
+		}
+		days_remove = 50
+		cost = 35
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_nonferrous_metal"	
+			add_to_variable = { PRC_budget = -9 }
+			custom_effect_tooltip = PRC_expand_dihua_iron_tt
+		}
+		remove_effect = {	
+		619 = {
+				add_resource = {
+					type = chromium
+					amount = 20
+				}
+		}
+		1397 = {
+				add_resource = {
+					type = tungsten
+					amount = 20
+				}
+		}
+		}
+		
+		modifier = {
+			consumer_goods_factor = 0.1
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	PRC_experimental_synthetic_rubber = {
+	    visible = {
+			check_variable = { PRC_budget > 0 }
+		}
+	    allowed = {
+			tag = PRC
+		}
+		days_remove = 120
+		cost = 35
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_experimental_synthetic_rubber"
+			add_to_variable = { PRC_budget = -9 }
+			custom_effect_tooltip = PRC_expand_dihua_iron_tt
+		}
+		remove_effect = {	
+		617 = {
+				add_resource = {
+					type = rubber
+					amount = 8
+				}
+		}
+		set_country_flag = allow_produce_rubber
+		}
+		
+		modifier = {
+			consumer_goods_factor = 0.1
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	PRC_expand_rubber_produce = {
+	    visible = {
+			check_variable = { PRC_budget > 0 }
+		}
+	    allowed = {
+			has_country_flag = allow_produce_rubber
+		}
+		visible =  {
+			has_country_flag = allow_produce_rubber
+		}
+		
+		days_remove = 60
+		cost = 15
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision PRC_expand_rubber_produce"
+			add_to_variable = { PRC_budget = -5 }
+			custom_effect_tooltip = PRC_expand_rubber_produce_tt
+		}
+		remove_effect = {	
+		617 = {
+				add_resource = {
+					type = rubber
+					amount = 5
+				}
+		}
+		}
+		
+		modifier = {
+			consumer_goods_factor = 0.1
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	monthly_budget_update = {
+	allowed = { 
+		   original_tag = PRC  
+		 }                
+          available = { 
+			hidden_trigger = {
+			NOT = {
+				has_country_flag =PRC_Monthly_agricultura_survey	
+				}
+			}
+		  }
+          activation = {                         
+            original_tag = PRC             
+          }
+          is_good = yes                      
+                      
+          days_mission_timeout = 30          
+          timeout_effect = {  
+                log = "[GetDateText]: [Root.GetName]: monthly_budget_update mission timer elapsed"		  
+                hidden_effect = {
+				monthly_budget_update_add = yes
+				activate_mission = monthly_budget_update
+				}
+				custom_effect_tooltip = monthly_budget_update_tt
+				}    	
+          complete_effect = {                    
+             log = "[GetDateText]: [Root.GetName]: Decision monthly_budget_update"             
+          }
+    }
+
+}

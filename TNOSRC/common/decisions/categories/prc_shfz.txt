@@ -1,0 +1,15 @@
+PRC_shfz= {
+	icon =  GFX_decision_category_generic_formable_nations
+	picture = GFX_prcshfz
+
+	allowed = {
+		or = {
+		original_tag = SHC
+		original_tag = PRC
+		original_tag = YUN
+        original_tag = CSR
+		original_tag = GNG
+	    original_tag = YAA
+	  }
+	}
+}

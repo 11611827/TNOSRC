@@ -1,0 +1,4 @@
+PRC = "countries/People's Republic of China.txt"
+ETR = "countries/East Turkestan.txt"
+SHC= "countries/Shang Hai City.txt"
+CSR= "countries/Chinese Soviet Republic.txt"
